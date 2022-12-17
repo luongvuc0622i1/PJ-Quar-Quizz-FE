@@ -1,0 +1,41 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="header" style="float: left">
+                        <h1 class="title">Test List</h1>
+                        <p class="category">This is table of test list</p>
+                    </div>
+                    <div class="header" style="float: right">
+                        <button [routerLink]="['/manager/test/create']" class="btn btn-warning btn-fill pull-right">Create New Test</button>
+                    </div>
+                    <div class="content table-responsive table-full-width">
+                        <table class="table table-hover table-striped">
+                            <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Level</th>
+                                <th style="width: 100px">Pass Score</th>
+                                <th style="width: 200px"></th>
+                                <th>Max Time</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr *ngFor="let test of tests; index as i">
+                                <td>{{i + 1}}</td>
+                                <td><a [routerLink]="['/manager/test/detail/',test.id]">{{test.name}}</a></td>
+                                <td>{{test.level.name}}</td>
+                                <td style="text-align: right">{{test.passScore}}</td>
+                                <td></td>
+                                <td>{{test.maxTime}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

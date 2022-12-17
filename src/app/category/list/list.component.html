@@ -1,0 +1,37 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="header" style="float: left">
+                        <h1 class="title">Category List</h1>
+                        <p class="category">This is table of categories list</p>
+                    </div>
+                    <div class="header" style="float: right">
+                        <button [routerLink]="['/manager/category/create']" class="btn btn-warning btn-fill pull-right">Create New category</button>
+                    </div>
+                    <div class="content table-responsive table-full-width">
+                        <table class="table table-hover table-striped">
+                            <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th style="width: 100px">colum delete</th>
+                                <th style="width: 200px"></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr *ngFor="let categoryS of category; index as i">
+                                <td>{{i + 1}}</td>
+                                <td>{{categoryS.name}}</td>
+                                <td><a [routerLink]="['/manager/categories/',categoryS.id]">Delete</a></td>
+                                <td></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

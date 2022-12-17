@@ -1,0 +1,67 @@
+<div class="bgr">
+    <div class="container">
+        <div class="row">
+<!--            <div class="modal-dialog widget-wrap" style="width: 970px; height: 150px">-->
+                <div class="modal-content" style="width: 1100px; height: 150px; position: center; left: 30px">
+                    <div class="modal-header" style="height: 60px">
+                        <h1>{{test.name}}</h1>
+                        <button (click)="submitTest()" style="left: 980px; top: -52px" id="submit">Submit</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="col-md-3">
+                            <div class="form-group" style="text-align: center">
+                                <label>Level</label>
+                                <p>{{test.level.name}}</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group" style="text-align: center">
+                                <label>Number Of Quizzes</label>
+                                <p>{{test.quizzes.length}}</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group" style="text-align: center">
+                                <label>Max Time</label>
+                                <p>{{test.maxTime}}</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3" style="text-align: center">
+                            <div class="form-group">
+                                <label>Time Out</label>
+                                <p id="demo">{{test.maxTime}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+<!--            </div>-->
+        </div>
+        <div class="row">
+            <div class="col-md-2" style="height: 550px" (click)="send()">
+                <mat-icon id="prevBtn" (click)="nextPrev(-1)" style="left: 130px">arrow_back_ios_rounded</mat-icon>
+            </div>
+            <div class="col-md-8" style="height: 550px">
+                <form id="regForm" *ngFor="let quiz of test.quizzes; index as i" (click)="getQuizId(quiz.id)">
+                    <div class="modal-dialog widget-wrap tab" style="width: 780px; left: -29px">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h3><span class="label label-warning" id="qid">{{i+1}}</span> {{quiz.name}}</h3>
+                            </div>
+                            <div class="modal-body">
+                                <div class="quiz" id="quiz">
+                                    <label class="element-animation1 btn-lg btn-warning btn-block option"><input class="largerCheck" type="checkbox" name="q_answer" (click)="click(1)">  {{quiz.answer.split(";")[0]}}</label>
+                                    <label class="element-animation2 btn-lg btn-warning btn-block option"><input class="largerCheck" type="checkbox" name="q_answer" (click)="click(2)">  {{quiz.answer.split(";")[1]}}</label>
+                                    <label class="element-animation3 btn-lg btn-warning btn-block option"><input class="largerCheck" type="checkbox" name="q_answer" (click)="click(3)">  {{quiz.answer.split(";")[2]}}</label>
+                                    <label class="element-animation3 btn-lg btn-warning btn-block option"><input class="largerCheck" type="checkbox" name="q_answer" (click)="click(4)">  {{quiz.answer.split(";")[3]}}</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-2" style="height: 550px" (click)="send()">
+                <mat-icon id="nextBtn" (click)="nextPrev(1)" style="left: -5px">arrow_forward_ios_rounded</mat-icon>
+            </div>
+        </div>
+    </div>
+</div>

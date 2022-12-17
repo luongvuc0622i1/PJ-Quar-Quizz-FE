@@ -1,0 +1,66 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="header" style="float: left">
+                        <h1 class="title">Exam Test List</h1>
+                        <p class="category">Exam Test are all listed below </p>
+                    </div>
+                    <div class="header col-lg-8">
+                        <div class="search-box">
+                            <i class="material-icons">&#xE8B6;</i>
+                            <input type="text" class="form-control" id="myInput" placeholder="Search&hellip;">
+                        </div>
+                    </div>
+                    <!--                    <div class="header" style="float: right">-->
+                    <!--                        <button [routerLink]="['/manager/quiz/create']" class="btn btn-warning btn-fill pull-right"-->
+                    <!--                                data-toggle="button" aria-pressed="false" autocomplete="off"><i class="pe-7s-plus"></i>-->
+                    <!--                            Create New Quiz-->
+                    <!--                        </button>-->
+                    <!--                    </div>-->
+                    <div class="content table-responsive table-full-width">
+                        <div class="header" style="float: right">
+                            <button [routerLink]="['/manager/result']" class="btn btn-warning btn-fill pull-right">Back To List User</button>
+                        </div>
+                        <table class="table table-striped table-hover">
+                            <thead>
+                            <tr>
+                                <th>NO</th>
+                                <th>TEST NAME</th>
+                                <th>TEST TIME</th>
+                                <th>TEST LEVEL</th>
+                                <th>CATEGORY</th>
+                                <th>PASS SCORE</th>
+                                <th>USER SCORE</th>
+                                <!--                                <th>NUM TRUE ANSWER </th>-->
+                                <th>ACTION</th>
+
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr *ngFor="let exam of examTestDetail; index as i">
+                                <td>{{i + 1}}</td>
+                                <td>{{exam.examQuizzes[i].test.name}}</td>
+                                <td>{{exam.examQuizzes[i].test.maxTime}}</td>
+                                <td>{{exam.examQuizzes[i].test.level.name}}</td>
+                                <div *ngFor=" let category of exam.examQuizzes[i].test.categories">{{category.name}}</div>
+                                <td>{{exam.examQuizzes[i].test.passScore}}</td>
+                                <td>{{(exam.numOfTA/exam.examQuizzes[i].test.quizzes.length*100).toFixed()}}</td>
+                                <td><a [routerLink]="['/manager/detail-result/',exam.id]"><mat-icon color="warn">quiz_rounded</mat-icon></a></td>
+
+                            </tr>
+                            </tbody>
+                        </table>
+                        <mat-paginator [length]=examTestDetail.length
+                                       [pageSize]="5"
+                                       [pageSizeOptions]="[5,10,20,30]"
+                                       aria-label="Select page">
+                        </mat-paginator>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

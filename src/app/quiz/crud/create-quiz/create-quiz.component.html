@@ -1,0 +1,125 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <form [formGroup]="quizForm" (ngSubmit)="submit()">
+                        <div class="header">
+                            <h1 class="title">Create New Quiz</h1>
+                        </div>
+                        <div class="content">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>What do you want to ask?</label>
+                                        <textarea formControlName="name" placeholder="Quiz" class="form-control here"
+                                                  id="" cols="30" rows="2"></textarea>
+
+                                    </div>
+                                    <div *ngIf="!name?.valid && (name?.dirty || name?.touched)">
+                                        <div [hidden]="!name?.errors?.['required']">
+                                            <p style="color: orange">Content of quiz is required</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-7">
+                                    <div class="form-group">
+                                        <label>Choices of Answer</label>
+
+                                        <mat-selection-list formControlName="correct_answer">
+                                            <mat-list-option class="output" value="1">
+                                                <input type="text" formControlName="answer1" class="form-control here"
+                                                       placeholder="Answer choice number 1" (keydown)="$event.stopPropagation()">
+                                                <div *ngIf="!answer1?.valid && (answer1?.dirty || answer1?.touched)">
+                                                    <div [hidden]="!answer1?.errors?.['required']">
+                                                        <p style="color: orange">Answer choice should not be blank</p>
+                                                    </div>
+                                                </div>
+                                            </mat-list-option>
+                                            <br>
+                                            <mat-list-option value="2">
+                                                <input type="text" formControlName="answer2" class="form-control here"
+                                                       placeholder="Answer choice number 2" (keydown)="$event.stopPropagation()">
+                                                <div *ngIf="!answer2?.valid && (answer2?.dirty || answer2?.touched)">
+                                                    <div [hidden]="!answer2?.errors?.['required']">
+                                                        <p style="color: orange">Answer choice should not be blank</p>
+                                                    </div>
+                                                </div>
+                                            </mat-list-option>
+                                            <br>
+                                            <mat-list-option value="3">
+                                                <input type="text" formControlName="answer3" class="form-control here"
+                                                       placeholder="Answer choice number 3" (keydown)="$event.stopPropagation()">
+                                                <div *ngIf="!answer3?.valid && (answer3?.dirty || answer3?.touched)">
+                                                    <div [hidden]="!answer3?.errors?.['required']">
+                                                        <p style="color: orange">Answer choice should not be blank</p>
+                                                    </div>
+                                                </div>
+                                            </mat-list-option>
+                                            <br>
+                                            <mat-list-option value="4">
+                                                <input type="text" formControlName="answer4" class="form-control here"
+                                                       placeholder="Answer choice number 4"  (keydown)="$event.stopPropagation()">
+                                                <div *ngIf="!answer4?.valid && (answer4?.dirty || answer4?.touched)">
+                                                    <div [hidden]="!answer4?.errors?.['required']">
+                                                        <p style="color: orange">Answer choice should not be blank</p>
+                                                    </div>
+                                                </div>
+                                            </mat-list-option>
+                                            <div *ngIf="!correctAnswer?.valid && (correctAnswer?.dirty || correctAnswer?.touched)">
+                                                <div [hidden]="!correctAnswer?.errors?.['required']">
+                                                    <p style="color: orange">Choose at least one correct answer</p>
+                                                </div>
+                                            </div>
+                                        </mat-selection-list>
+                                    </div>
+                                    <p class="small text-muted">*Check to mark correct answer</p>
+                                </div>
+                                <div class="col-md-4" style="float: right">
+                                    <div class="form-group">
+                                        <label>Level</label>
+                                        <select class="form-control here" formControlName="level">
+                                            <option *ngFor="let level of levels"
+                                                    [value]="level.id">{{level.name}}</option>
+                                        </select>
+                                    </div>
+                                    <div *ngIf="!level?.valid && (level?.dirty || level?.touched)">
+                                        <div [hidden]="!level?.errors?.['required']">
+                                            <p style="color: orange">Level is required</p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Quiz Type</label>
+                                        <select class="form-control here" formControlName="typeQuiz">
+                                            <option *ngFor="let typeQuiz of typeQuizzes"
+                                                    [value]="typeQuiz.id">{{typeQuiz.name}}</option>
+                                        </select>
+                                    </div>
+                                    <div *ngIf="!typeQuiz?.valid && (typeQuiz?.dirty || typeQuiz?.touched)">
+                                        <div [hidden]="!typeQuiz?.errors?.['required']">
+                                            <p style="color: orange">Quiz type is required</p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Categories</label>
+                                        <mat-selection-list #category formControlName="category">
+                                            <mat-list-option *ngFor="let category of categories" value="{{category.id}}">
+                                                {{category.name}}
+                                            </mat-list-option>
+                                        </mat-selection-list>
+                                    </div>
+                                </div>
+                            </div>
+                            <button style="margin-right: 15px; margin-top: 10px" type="submit"
+                                    class="btn btn-warning btn-fill pull-right"
+                                [disabled]="!quizForm.valid"
+                            >Create
+                            </button>
+                            <div class="clearfix"></div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

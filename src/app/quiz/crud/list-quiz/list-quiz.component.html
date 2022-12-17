@@ -1,0 +1,73 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="header" style="float: left">
+                        <h1 class="title">Quiz List</h1>
+                        <p class="category">Quizzes are all listed below </p>
+                    </div>
+                    <div class="header col-lg-8">
+                        <div class="search-box">
+                            <i class="material-icons">&#xE8B6;</i>
+                            <input type="text" class="form-control" id="myInput" placeholder="Search&hellip;">
+                        </div>
+                    </div>
+                    <div class="header" style="float: right">
+                        <button [routerLink]="['/manager/quiz/create']" class="btn btn-warning btn-fill pull-right"
+                                data-toggle="button" aria-pressed="false" autocomplete="off"><i class="pe-7s-plus"></i>
+                            Create New Quiz
+                        </button>
+                    </div>
+                    <div class="content table-responsive table-full-width">
+                        <table class="table table-striped table-hover">
+                            <thead>
+                            <tr>
+                                <th class="col-md-1">No. <i class="fa fa-sort"></i></th>
+                                <th class="col-md-6">Quiz <i class="fa fa-sort"></i></th>
+                                <th class="col-md-2">Quiz Type <i class="fa fa-sort"></i></th>
+                                <th class="col-md-2">Level <i class="fa fa-sort"></i></th>
+                                <th class="col-md-1">Actions</th>
+                            </tr>
+                            </thead>
+                            <tbody *ngFor="let quiz of quizzes ; index as i" id="myTable">
+                            <tr class="panel-collapse" data-toggle="collapse" data-target="#child">
+                                <td>{{i + 1}}</td>
+                                <td>{{quiz.name}}</td>
+                                <td>{{quiz.typeQuizzes.name}}</td>
+                                <td>{{quiz.level.name}}</td>
+                                <td>
+                                    <!--                                    <a href="#" class="view" title="View" data-toggle="tooltip"><i-->
+                                    <!--                                            class="material-icons">&#xE417;</i></a>-->
+
+                                        <a [routerLink]="['/manager/quiz/update',quiz.id]" class="edit " title="Edit"
+                                           data-toggle="tooltip"><i
+                                                class="material-icons">&#xE254;</i>
+                                            <p class="hidden-lg hidden-md">Update</p>
+                                        </a>
+
+                                        <a class="delete" title="Delete" data-toggle="tooltip"
+                                           (click)="deleteQuiz(quiz.id)"><i
+                                                class="material-icons">&#xE872;</i>
+                                            <p class="hidden-lg hidden-md">Delete</p>
+                                        </a>
+                                </td>
+                            </tr>
+                            <tr id="child" class="collapse text-muted">
+                                <td colspan="6">Answer:
+                                    {{quiz.answer}}<br>Correct answer:
+                                    {{quiz.correct_answer}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+<!--                        <mat-paginator [length]=quizzes.length-->
+<!--                                       [pageSize]="5"-->
+<!--                                       [pageSizeOptions]="[5,10,20,30]"-->
+<!--                                       aria-label="Select page">-->
+<!--                        </mat-paginator>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

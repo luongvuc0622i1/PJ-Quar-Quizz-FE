@@ -1,0 +1,139 @@
+<!--<div class="container">-->
+
+<!--    <div class="row">-->
+<!--        <div class="col-12" style="margin-top: 100px; margin: auto">-->
+
+<!--            <div class="container" id="container">-->
+
+<!--                <div class="form-container sign-up-container">-->
+<!--                    <form (ngSubmit)="f.form.valid && register()" #f="ngForm">-->
+<!--                        <mat-error class="alert alert-primary" style="color: red">{{status}}</mat-error>-->
+<!--                        <h1>Create Account</h1>-->
+<!--                        <div class="social-container">-->
+<!--                            <mat-icon color="primary" matSuffix>facebook</mat-icon>-->
+<!--                            &lt;!&ndash;                            <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>&ndash;&gt;-->
+<!--                            &lt;!&ndash;                            <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>&ndash;&gt;-->
+<!--                            &lt;!&ndash;                            <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>&ndash;&gt;-->
+<!--                        </div>-->
+<!--                        <span>or use your email for registration</span>-->
+<!--                        <div class="register-container">-->
+<!--                            &lt;!&ndash;                            USERNAME&ndash;&gt;-->
+<!--                            <mat-form-field appearance="fill" style="width: 250px">-->
+<!--                                <mat-label>Username</mat-label>-->
+<!--                                <input [(ngModel)]="form.username" name="username" #username="ngModel" matInput placeholder="YourUsername" required minlength="6">-->
+<!--                                <mat-icon color="primary" matSuffix>account_box</mat-icon>-->
+<!--                                &lt;!&ndash;                                <mat-error *ngIf="username.hasError('required')">Username is required!</mat-error>&ndash;&gt;-->
+
+<!--                            </mat-form-field>-->
+<!--                            &lt;!&ndash;                            EMAIL&ndash;&gt;-->
+<!--                            <mat-form-field appearance="fill" style="width: 250px">-->
+<!--                                <mat-label>Email</mat-label>-->
+<!--                                <input [formControl]="mailFormControl" name="email"  matInput placeholder="YourEmail" [(ngModel)]="form.email" required >-->
+<!--                                <mat-icon color="primary" matSuffix>alternate_email</mat-icon>-->
+<!--                                &lt;!&ndash;                                <mat-error *ngIf="mailFormControl.hasError('required')">Mail is required!</mat-error>&ndash;&gt;-->
+<!--                                &lt;!&ndash;                                <mat-error *ngIf="mailFormControl.hasError('email')">Email is invalid! Ex: ye@gmail.com</mat-error>&ndash;&gt;-->
+<!--                            </mat-form-field>-->
+
+<!--                            &lt;!&ndash;                            PASSWORD//&ndash;&gt;-->
+<!--                            <div class="password-container">-->
+<!--                                <mat-form-field appearance="fill" style="width: 250px">-->
+<!--                                    <mat-label>Password</mat-label>-->
+<!--                                    <input [(ngModel)]="form.password" #password=ngModel name="password" matInput [type]="hide ? 'password' : 'text'" required minlength="6" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$">-->
+<!--                                    <button color="primary" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">-->
+<!--                                        <mat-icon color="primary">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>-->
+<!--                                    </button>-->
+<!--                                    &lt;!&ndash;                                    <mat-error *ngIf="password.hasError('required')">Password is required!</mat-error>&ndash;&gt;-->
+<!--                                    &lt;!&ndash;                                    <mat-error *ngIf="password.hasError('minlength')">Password must have at least 8 characters</mat-error>&ndash;&gt;-->
+<!--                                    &lt;!&ndash;                                    <mat-error *ngIf="password.hasError('pattern')">First letter should be capitalized</mat-error>&ndash;&gt;-->
+<!--                                </mat-form-field>-->
+<!--                            </div>-->
+
+<!--                            &lt;!&ndash;&lt;!&ndash;                            CONFIRM PASSWORD&ndash;&gt;&ndash;&gt;-->
+<!--                            &lt;!&ndash;                            <div class="password-container">&ndash;&gt;-->
+<!--                            &lt;!&ndash;                                <mat-form-field appearance="fill" style="width: 250px">&ndash;&gt;-->
+<!--                            &lt;!&ndash;                                    <mat-label>Confirm Password</mat-label>&ndash;&gt;-->
+<!--                            &lt;!&ndash;                                    <input [formControl]="confirmPasswordFormControl" name="confirmPassword" matInput [type]="hide ? 'password' : 'text'" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$">&ndash;&gt;-->
+<!--                            &lt;!&ndash;                                        <mat-icon color="primary" matSuffix>password</mat-icon>&ndash;&gt;-->
+<!--                            &lt;!&ndash;                                    <mat-error *ngIf="confirmPasswordFormControl.hasError('pattern')">Doest match with password</mat-error>&ndash;&gt;-->
+<!--                            &lt;!&ndash;                                </mat-form-field>&ndash;&gt;-->
+<!--                            &lt;!&ndash;                                <br>&ndash;&gt;-->
+<!--                            &lt;!&ndash;                                <br>&ndash;&gt;-->
+<!--                            &lt;!&ndash;                            </div>&ndash;&gt;-->
+
+
+<!--                        </div>-->
+<!--                        <button id="singUp">Sign Up</button>-->
+<!--                    </form>-->
+<!--                </div>-->
+<!--                <div class="form-container sign-in-container">-->
+<!--                    <form (ngSubmit)="f.form.valid && login()" #f="ngForm">-->
+<!--                        <h1>Sign in</h1>-->
+<!--                        <mat-error class="alert alert-primary" style="color: red">{{statusLogin}}</mat-error>-->
+<!--                        <button class="btn btn-primary" [routerLink]="['']">Link</button>-->
+
+<!--                        <div class="social-container">-->
+<!--                            <mat-icon color="primary" matSuffix>facebook</mat-icon>-->
+<!--                            &lt;!&ndash;                            <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>&ndash;&gt;-->
+<!--                            &lt;!&ndash;                            <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>&ndash;&gt;-->
+<!--                            &lt;!&ndash;                            <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>&ndash;&gt;-->
+<!--                        </div>-->
+<!--                        <span>or use your account</span>-->
+
+
+<!--                        &lt;!&ndash;                        USERNAME&ndash;&gt;&ndash;&gt;-->
+<!--                        <mat-form-field appearance="fill" style="width: 250px">-->
+<!--                            <mat-label>Username</mat-label>-->
+<!--                            <input [(ngModel)]="form.username" name="username" #username="ngModel" matInput placeholder="YourUsername" required minlength="6">-->
+<!--                            <mat-icon color="primary" matSuffix>account_box</mat-icon>-->
+<!--                            <mat-error *ngIf="username.hasError('required')">Username is required!</mat-error>-->
+
+<!--                        </mat-form-field>-->
+
+<!--                        &lt;!&ndash;                            PASSWORD&ndash;&gt;-->
+<!--                        <div class="password-container">-->
+<!--                            <mat-form-field appearance="fill" style="width: 250px">-->
+<!--                                <mat-label>Password</mat-label>-->
+<!--                                <input [(ngModel)]="form.password" #password=ngModel name="password" matInput [type]="hide ? 'password' : 'text'" required minlength="6" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$">-->
+<!--                                <button color="primary" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">-->
+<!--                                    <mat-icon color="primary">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>-->
+<!--                                </button>-->
+<!--                                <mat-error *ngIf="password.hasError('required')">Password is required!</mat-error>-->
+<!--                                <mat-error *ngIf="password.hasError('minlength')">Password must have at least 8 characters</mat-error>-->
+<!--                                <mat-error *ngIf="password.hasError('pattern')">First letter should be capitalized</mat-error>-->
+<!--                            </mat-form-field>-->
+<!--                        </div>-->
+
+<!--                        <a href="#">Forgot your password?</a>-->
+<!--                        <button id="singIn">Sign In</button>-->
+<!--                    </form>-->
+<!--                </div>-->
+<!--                <div class="overlay-container">-->
+<!--                    <div class="overlay">-->
+<!--                        <div class="overlay-panel overlay-left">-->
+<!--                            <h1>Welcome Back!</h1>-->
+<!--                            <p>To keep connected with us please login with your personal info</p>-->
+<!--                            <button class="ghost" id="signIn" >Sign In</button>-->
+<!--                        </div>-->
+<!--                        <div class="overlay-panel overlay-right">-->
+<!--                            <h1>Hello, Friend!</h1>-->
+<!--                            <p>Enter your personal details and start journey with us</p>-->
+<!--                            <button class="ghost" id="signUp" >Sign Up</button>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+
+<!--            <footer>-->
+<!--                <p>-->
+<!--                    Created with <i class="fa fa-heart"></i> by-->
+<!--                    <a target="_blank" href="https://florin-pop.com">Group 3 - Quiz</a>-->
+<!--                    - Read how I created this and how you can join the challenge-->
+<!--                    <a target="_blank" href="https://www.florin-pop.com/blog/2019/03/double-slider-sign-in-up-form/">here</a>.-->
+<!--                </p>-->
+<!--            </footer>-->
+
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+
+
