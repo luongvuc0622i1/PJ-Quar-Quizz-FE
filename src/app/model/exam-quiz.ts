@@ -7,5 +7,6 @@ export interface ExamQuiz {
     quiz?: Quiz,
     test?: Test,
     answerUser?: String,
+    status : number,
     user?: User,
 }

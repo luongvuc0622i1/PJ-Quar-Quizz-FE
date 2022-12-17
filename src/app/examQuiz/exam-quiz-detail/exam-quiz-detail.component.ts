@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {ExamQuizService} from "../model/exam-quiz.service";
-import {ExamQuiz} from "../interface/exam-quiz";
+
 import {Router} from "@angular/router";
 import Swal from "sweetalert2";
+import {ExamQuiz} from "../../model/exam-quiz";
+import {ExamService} from "../../service/exam/exam.service";
 
 @Component({
   selector: 'app-exam-quiz-detail',
@@ -12,14 +13,13 @@ import Swal from "sweetalert2";
 export class ExamQuizDetailComponent implements OnInit {
 
     examQuizDetail:ExamQuiz[];
-    examQuizDetail1 :ExamQuiz;
-    constructor(private examQuizDetailService : ExamQuizService,private router: Router) { }
+    constructor(private examQuizService : ExamService,private router: Router) { }
 
     ngOnInit() {
         this.getAll();
     }
     getAll(){
-        this.examQuizDetailService.getAll().subscribe(examTestDetail =>{
+        this.examQuizService.getAll().subscribe(examTestDetail =>{
             this.examQuizDetail = examTestDetail;
         })
     }

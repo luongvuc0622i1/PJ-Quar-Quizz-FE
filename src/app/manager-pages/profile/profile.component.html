@@ -1,0 +1,196 @@
+<div class="main-content" >
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="header">
+                        <h1 class="title">Profile</h1>
+                    </div>
+                    <div class="content">
+                        <form>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>First Name</label>
+                                        <input type="text" class="form-control" value="Luong" disabled>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Last Name</label>
+                                        <input type="text" class="form-control" value="Vu" disabled>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Birthday</label>
+                                        <input type="text" class="form-control" value="10/01/1998" disabled>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Username</label>
+                                        <input type="text" class="form-control" value="{{user.username}}" disabled>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Role</label>
+                                        <input type="text" class="form-control" value="{{user.roles[0].name}}" disabled>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Email address</label>
+                                        <input type="text" class="form-control" value="{{user.email}}" disabled>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="form-group">
+                                        <label>Address</label>
+                                        <input type="text" class="form-control" value="Codegym center, 23/2 Ham Nghi, My Dinh 2" disabled>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>District</label>
+                                        <input type="text" class="form-control" value="Nam Tu Liem" disabled>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>City</label>
+                                        <input type="text" class="form-control" value="Ha Noi" disabled>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Country</label>
+                                        <input type="text" class="form-control" value="Viet Nam" disabled>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Phone Number</label>
+                                        <input type="text" class="form-control" value="(+84) 0915814526" disabled>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>About Me</label>
+                                        <textarea rows="5" class="form-control" disabled>Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo.</textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--                            <button type="submit" class="btn btn-warning btn-fill pull-right">Edit Password</button>-->
+                            <div class="clearfix"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="header">
+                        <h1 class="title">Edit Password</h1>
+                    </div>
+                    <div class="content">
+                        <form [formGroup]="changePasswordForm" (ngSubmit)="submit()">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Current Password</label>
+                                        <input type="password" class="form-control" id="inputCur" formControlName="curPass">
+                                        <mat-error *ngIf="curPass.hasError('pattern')" style="color: orange">
+                                            Passwords must have at least 8 characters and contain of the following: lowercase letters, numbers.<br>
+                                        </mat-error>
+                                        <section class="example-section">
+                                            <mat-checkbox class="example-margin" (click)="myFunction1()">
+                                                <small>Show Password</small>
+                                            </mat-checkbox>
+                                        </section>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>New Password</label>
+                                        <input type="password" class="form-control" id="inputNew" formControlName="newPass">
+                                        <mat-error *ngIf="newPass.hasError('pattern')" style="color: orange">
+                                            Passwords must have at least 8 characters and contain of the following: lowercase letters, numbers.<br>
+                                        </mat-error>
+                                        <section class="example-section">
+                                            <mat-checkbox class="example-margin" (click)="myFunction2()">
+                                                <small>Show Password</small>
+                                            </mat-checkbox>
+                                        </section>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Confirm Password</label>
+                                        <input type="password" class="form-control" id="inputRe" formControlName="rePass">
+                                        <mat-error *ngIf="rePass.hasError('pattern')" style="color: orange">
+                                            Passwords must have at least 8 characters and contain of the following: lowercase letters, numbers.<br>
+                                        </mat-error>
+                                        <mat-error *ngIf="rePass.hasError('matching')" style="color: orange">
+                                            Confirm Password must match.
+                                        </mat-error>
+                                        <section class="example-section">
+                                            <mat-checkbox class="example-margin" (click)="myFunction3()">
+                                                <small>Show Password</small>
+                                            </mat-checkbox>
+                                        </section>
+                                    </div>
+                                </div>
+                            </div>
+                            <button style="margin-left: 10px" type="reset" class="btn btn-primary btn-fill pull-right">Cancel</button>
+                            <button type="submit" [disabled]="!changePasswordForm.valid" class="btn btn-primary btn-fill pull-right">Update</button>
+                            <div class="clearfix"></div>
+                        </form>
+                    </div>
+                </div>
+                <div class="card card-user">
+                    <div class="image">
+                        <img src="https://ununsplash.imgix.net/photo-1431578500526-4d9613015464?fit=crop&fm=jpg&h=300&q=75&w=400" alt="..."/>
+                    </div>
+                    <div class="content">
+                        <div class="author">
+                            <a href="#">
+                                <img class="avatar border-gray" src="assets/img/faces/face-8.jpeg" alt="..."/>
+
+                                <h4 class="title">Luong Vu<br />
+                                    <small>luong.vu1012</small>
+                                </h4>
+                            </a>
+                        </div>
+                        <p class="description text-center"> "Lamborghini Mercy <br>
+                            Your chick she so thirsty <br>
+                            I'm in that two seat Lambo"
+                        </p>
+                    </div>
+                    <hr>
+                    <div class="text-center">
+                        <button href="https://www.facebook.com/lou.v1012/" class="btn btn-simple"><i class="fa fa-facebook-square"></i></button>
+                        <button href="#" class="btn btn-simple"><i class="fa fa-twitter"></i></button>
+                        <button href="https://myaccount.google.com/u/2/" class="btn btn-simple"><i class="fa fa-google-plus-square"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

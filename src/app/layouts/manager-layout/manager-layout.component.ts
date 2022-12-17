@@ -28,7 +28,7 @@ export class ManagerLayoutComponent implements OnInit {
           document.getElementsByTagName('body')[0].classList.remove('perfect-scrollbar-off');
       }
       const elemMainPanel = <HTMLElement>document.querySelector('.main-panel');
-      const elemSidebar = <HTMLElement>document.querySelector('.sidebar .sidebar-wrapper');
+      const elemSidebar = <HTMLElement>document.querySelector('.sidebar-admin .sidebar-admin-wrapper');
 
       this.location.subscribe((ev:PopStateEvent) => {
           this.lastPoppedUrl = ev.url;
@@ -58,9 +58,9 @@ export class ManagerLayoutComponent implements OnInit {
       this.runOnRouteChange();
   }
   isMap(path){
-      var titlee = this.location.prepareExternalUrl(this.location.path());
-      titlee = titlee.slice( 1 );
-      if(path == titlee){
+      var title = this.location.prepareExternalUrl(this.location.path());
+      title = title.slice( 1 );
+      if(path == title){
           return false;
       }
       else {

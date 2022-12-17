@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {ExamTestDetail} from "../interface/exam-test-detail";
-import {ExamTestDetailService} from "../service/exam-test-detail.service";
 import Swal from "sweetalert2";
 import {Router} from "@angular/router";
+import {ExamTest} from "../../model/exam-test";
+import {ExamService} from "../../service/exam/exam.service";
 
 @Component({
   selector: 'app-history-list',
@@ -11,16 +11,15 @@ import {Router} from "@angular/router";
 })
 export class HistoryListComponent implements OnInit {
      sum:number;
-    examTestDetail:ExamTestDetail[];
-    examTestDetail1:ExamTestDetail;
-    constructor(private examTestDetailService : ExamTestDetailService,private router: Router) { }
+    examTestDetail:ExamTest[];
+    constructor(private examTestService : ExamService,private router: Router) { }
 
     ngOnInit() {
         console.log(this.examTestDetail);
         this.getAll();
     }
     getAll(){
-        this.examTestDetailService.getAll().subscribe(examTestDetail =>{
+        this.examTestService.getAll2().subscribe(examTestDetail =>{
             this.examTestDetail = examTestDetail;
         })
     }

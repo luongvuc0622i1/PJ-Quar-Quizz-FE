@@ -3,30 +3,25 @@ import { NgModule } from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { RouterModule } from '@angular/router';
-
 import { AppRoutingModule } from './app.routing';
 import { NavbarModule } from './shared/navbar/navbar.module';
 import { FooterModule } from './shared/footer/footer.module';
-import { SidebarModule } from './sidebar/sidebar.module';
-
 import { AppComponent } from './app.component';
 import {ManagerLayoutComponent} from "./layouts/manager-layout/manager-layout.component";
-import { FormLoginComponent } from './form-login/form-login.component';
 import {MatIconModule} from "@angular/material/icon";
-import {MatToolbarModule} from "@angular/material/toolbar";
-import {MatCardModule} from "@angular/material/card";
-import {MatRadioModule} from "@angular/material/radio";
-import {MatCheckboxModule} from "@angular/material/checkbox";
-import {MatButtonModule} from "@angular/material/button";
-import {Auth_interceptor} from "./auth_interceptor";
+import {Auth_interceptor} from "./service/auth_interceptor";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
-import { HomePageComponent } from './home-page/home-page.component';
 import { UserLayoutComponent } from './layouts/user-layout/user-layout.component';
-import { ListResultComponent } from './result/list-user/list-result.component';
-import { UserResultComponent } from './result/user-result/user-result.component';
 import {MatPaginatorModule} from "@angular/material/paginator";
-import { DetailResultComponent } from './result/detail-result/detail-result.component';
+import { LandingPageComponent } from './landing-page/landing-page.component';
+import { AccountPageComponent } from './account-page/account-page.component';
+import { PlayingPageComponent } from './playing-page/playing-page.component';
+import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
+import {SidebarManagerModule} from "./layouts/manager-layout/sidebar/sidebar-manager.module";
+import {SidebarAdminModule} from "./layouts/admin-layout/sidebar/sidebar-admin.module";
+import { ListCategoryComponent } from './manager-pages/category/list-category/list-category.component';
+import { CreateCategoryComponent } from './manager-pages/category/create-category/create-category.component';
 @NgModule({
     imports: [
         BrowserAnimationsModule,
@@ -35,20 +30,23 @@ import { DetailResultComponent } from './result/detail-result/detail-result.comp
         HttpClientModule,
         NavbarModule,
         FooterModule,
-        SidebarModule,
         AppRoutingModule,
         MatFormFieldModule,
         MatIconModule,
         ReactiveFormsModule,
         MatInputModule,
-        MatPaginatorModule
+        MatPaginatorModule,
+        SidebarManagerModule,
+        SidebarAdminModule,
     ],
     declarations: [
         AppComponent,
-        ManagerLayoutComponent,
-        FormLoginComponent,
-        HomePageComponent,
+        LandingPageComponent,
+        AccountPageComponent,
         UserLayoutComponent,
+        PlayingPageComponent,
+        ManagerLayoutComponent,
+        AdminLayoutComponent,
     ],
     providers: [
         {

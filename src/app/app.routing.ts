@@ -3,24 +3,22 @@ import {CommonModule,} from '@angular/common';
 import {BrowserModule} from '@angular/platform-browser';
 import {Routes, RouterModule} from '@angular/router';
 import {ManagerLayoutComponent} from "./layouts/manager-layout/manager-layout.component";
-import {FormLoginComponent} from "./form-login/form-login.component";
-import {HomePageComponent} from "./home-page/home-page.component";
 import {UserLayoutComponent} from "./layouts/user-layout/user-layout.component";
-import {AuthGuard} from "./security/auth.guard";
+import {AuthGuard} from "./service/security/auth.guard";
+import {LandingPageComponent} from "./landing-page/landing-page.component";
+import {AccountPageComponent} from "./account-page/account-page.component";
+import {AdminLayoutComponent} from "./layouts/admin-layout/admin-layout.component";
 
 const routes: Routes = [
     {
         path: '',
-        component: HomePageComponent
-    }, {
-        path: 'manager', canActivate: [AuthGuard],
-        component: ManagerLayoutComponent,
-        children: [
-            {
-                path: '',
-                loadChildren: () => import('./layouts/manager-layout/manager-layout.module').then(x => x.ManagerLayoutModule)
-            }]
-    }, {
+        component: LandingPageComponent
+    },
+    {
+        path: 'account',
+        component: AccountPageComponent
+    },
+    {
         path: 'user', canActivate: [AuthGuard],
         component: UserLayoutComponent,
         children: [
@@ -30,17 +28,26 @@ const routes: Routes = [
             }]
     },
     {
-        path: 'account',
-        component: FormLoginComponent,
+        path: 'manager', canActivate: [AuthGuard],
+        component: ManagerLayoutComponent,
         children: [
             {
                 path: '',
-                loadChildren: () => import('./form-login/form-login.module').then(x => x.FormLoginModule)
+                loadChildren: () => import('./layouts/manager-layout/manager-layout.module').then(x => x.ManagerLayoutModule)
+            }]
+    },
+    {
+        path: 'admin', canActivate: [AuthGuard],
+        component: AdminLayoutComponent,
+        children: [
+            {
+                path: '',
+                loadChildren: () => import('./layouts/admin-layout/admin-layout.module').then(x => x.AdminLayoutModule)
             }]
     },
     {
         path: '**',
-        component: HomePageComponent
+        component: LandingPageComponent
     }
 ];
 

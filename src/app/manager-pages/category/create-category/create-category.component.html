@@ -1,0 +1,36 @@
+<div class="main-content" >
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="header">
+                        <h1 class="title">Create Category</h1>
+                    </div>
+                    <div class="content">
+                        <form [formGroup]="categoryForm" (ngSubmit)="submit()">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Name</label>
+                                        <input type="text" class="form-control here" placeholder="Name category" formControlName="name">
+                                        <div *ngIf="!name?.valid && (name?.dirty || name?.touched)">
+                                            <div [hidden]="!name?.errors?.['required']">
+                                                <p style="color: orange">Name is required</p>
+                                            </div>
+                                            <div [hidden]="!name?.errors?.['minlength']">
+                                                <p style="color: orange">Name min length 3</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-fill pull-right" [disabled]="!categoryForm.valid" style="margin-left: 10px">Create</button>
+                            <button [routerLink]="['/manager/categories']" type="submit" class="btn btn-primary btn-fill pull-right">BackList</button>
+                            <div class="clearfix"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

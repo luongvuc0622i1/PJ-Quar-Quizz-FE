@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {ExamTestDetail} from "../interface/exam-test-detail";
-import {ExamTestDetailService} from "../service/exam-test-detail.service";
 import {FormControl, FormGroup} from "@angular/forms";
 import {ActivatedRoute, ParamMap, Router} from "@angular/router";
 import Swal from "sweetalert2";
+import {ExamTest} from "../../model/exam-test";
+import {ExamService} from "../../service/exam/exam.service";
 
 @Component({
   selector: 'app-history-detail',
@@ -11,16 +11,14 @@ import Swal from "sweetalert2";
   styleUrls: ['./history-detail.component.scss']
 })
 export class HistoryDetailComponent implements OnInit {
-    examTestDetail:ExamTestDetail[];
-    examTestDetail1  :ExamTestDetail;
-    examTestDetailFrom : FormGroup;
-    constructor(private examTestDetailService : ExamTestDetailService,private router: Router) { }
+    examTestDetail:ExamTest[];
+    constructor(private examTestService : ExamService,private router: Router) { }
 
     ngOnInit() {
         this.getAll();
     }
     getAll(){
-        this.examTestDetailService.getAll1().subscribe(examTestDetail =>{
+        this.examTestService.getAll1().subscribe(examTestDetail =>{
             this.examTestDetail = examTestDetail;
         })
     }
@@ -50,7 +48,7 @@ export class HistoryDetailComponent implements OnInit {
 
     }
     // id:number;
-    // constructor(private examTestDetailService : ExamTestDetailService,
+    // constructor(private examTestService : ExamTestDetailService,
     //             private router : Router,
     //             private activateRouter : ActivatedRoute) {
     //     this.activateRouter.paramMap.subscribe((paramMap : ParamMap)=>{
@@ -63,17 +61,17 @@ export class HistoryDetailComponent implements OnInit {
     //     this.getExamDetailById(this.id);
     // }
     // getAll(){
-    //     this.examTestDetailService.getAll1().subscribe(examTest =>{
+    //     this.examTestService.getAll1().subscribe(examTest =>{
     //         this.examTestDetail=examTest;
     //     })
     // }
     // getExamDetailById(id:number){
-    //     this.examTestDetailService.findById(id).subscribe(examTest =>{
+    //     this.examTestService.findById(id).subscribe(examTest =>{
     //         this.examTestDetail1=examTest;
     //     })
     // }
     // getExamDetail(id:number){
-    //     return this.examTestDetailService.findById(id).subscribe(examTest =>{
+    //     return this.examTestService.findById(id).subscribe(examTest =>{
     //         this.examTestDetailFrom =new FormGroup({
     //             id: new FormControl(examTest.id),
     //             appUser :new FormControl(examTest.appUser.username),

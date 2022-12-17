@@ -1,45 +1,30 @@
 import { Routes } from '@angular/router';
 
-import { HomeComponent } from '../../home/home.component';
-import { UserComponent } from '../../user/user.component';
-import { TablesComponent } from '../../tables/tables.component';
-import { TypographyComponent } from '../../typography/typography.component';
-import { IconsComponent } from '../../icons/icons.component';
-import { MapsComponent } from '../../maps/maps.component';
-import { NotificationsComponent } from '../../notifications/notifications.component';
-import {ListTestComponent} from "../../tests/crud/list-test/list-test.component";
-import {CreateTestComponent} from "../../tests/crud/create-test/create-test.component";
-import {ListComponent} from "../../category/list/list.component";
-import {CreateComponent} from "../../category/create/create.component";
-import {DeleteComponent} from "../../category/delete/delete.component";
-import {ListQuizComponent} from "../../quiz/crud/list-quiz/list-quiz.component";
-import {CreateQuizComponent} from "../../quiz/crud/create-quiz/create-quiz.component";
-import {UpdateQuizComponent} from "../../quiz/crud/update-quiz/update-quiz.component";
-import {DetailTestComponent} from "../../tests/crud/detail-test/detail-test.component";
-import {ListResultComponent} from "../../result/list-user/list-result.component";
-import {UserResultComponent} from "../../result/user-result/user-result.component";
-import {DetailResultComponent} from "../../result/detail-result/detail-result.component";
+import {ListTestComponent} from "../../manager-pages/test/list-test/list-test.component";
+import {CreateTestComponent} from "../../manager-pages/test/create-test/create-test.component";
+import {ListQuizComponent} from "../../manager-pages/quiz/list-quiz/list-quiz.component";
+import {CreateQuizComponent} from "../../manager-pages/quiz/create-quiz/create-quiz.component";
+import {UpdateQuizComponent} from "../../manager-pages/quiz/update-quiz/update-quiz.component";
+import {DetailTestComponent} from "../../manager-pages/test/detail-test/detail-test.component";
+import {ListUserComponent} from "../../manager-pages/result/list-user/list-user.component";
+import {ListResultComponent} from "../../manager-pages/result/list-result/list-result.component";
+import {DetailResultComponent} from "../../manager-pages/result/detail-result/detail-result.component";
+import {ProfileComponent} from "../../manager-pages/profile/profile.component";
+import {ListCategoryComponent} from "../../manager-pages/category/list-category/list-category.component";
+import {CreateCategoryComponent} from "../../manager-pages/category/create-category/create-category.component";
 
 
 export const ManagerLayoutRoutes: Routes = [
-    { path: 'dashboard',      component: HomeComponent },
-    { path: 'user',           component: UserComponent },
-    { path: 'category',       component: ListComponent},
-    { path: 'category/create',component: CreateComponent},
-    { path: 'categories/:id',     component: DeleteComponent},
-    { path: 'quiz/list',      component: ListQuizComponent },
-    { path: 'quiz/create',    component: CreateQuizComponent },
-    { path: 'quiz/update/:id',    component: UpdateQuizComponent },
-    { path: 'test/list',      component: ListTestComponent },
-    { path: 'test/create',    component: CreateTestComponent },
-    { path: 'test/detail/:id',component: DetailTestComponent },
-    { path: 'table',          component: TablesComponent },
-    { path: 'typography',     component: TypographyComponent },
-    { path: 'icons',          component: IconsComponent },
-    { path: 'maps',           component: MapsComponent },
-    { path: 'notifications',  component: NotificationsComponent },
-    { path: 'result',  component: ListResultComponent },
-    { path: 'user-result/:id',  component: UserResultComponent },
-    { path: 'detail-result/:id',  component: DetailResultComponent },
-
+    { path: 'profile',              component: ProfileComponent },
+    { path: 'categories',           component: ListCategoryComponent },
+    { path: 'categories/create',    component: CreateCategoryComponent },
+    { path: 'quizzes',              component: ListQuizComponent },
+    { path: 'quizzes/create',       component: CreateQuizComponent },
+    { path: 'quizzes/:id',          component: UpdateQuizComponent },
+    { path: 'tests',                component: ListTestComponent },
+    { path: 'tests/create',         component: CreateTestComponent },
+    { path: 'tests/:id',            component: DetailTestComponent },
+    { path: 'users',                component: ListUserComponent },
+    { path: 'users/:id',            component: ListResultComponent },
+    { path: 'users/:id/results/:id',component: DetailResultComponent },
 ];

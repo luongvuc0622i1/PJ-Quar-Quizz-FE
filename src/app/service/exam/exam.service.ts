@@ -4,8 +4,6 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {ExamQuiz} from "../../model/exam-quiz";
 import {ExamTest} from "../../model/exam-test";
-import {Quiz} from "../../quiz/model/quiz";
-import {User} from "../../model/user";
 
 const API_URL=`${environment.apiUrl}`
 
@@ -16,19 +14,31 @@ export class ExamService {
 
   constructor(private http:HttpClient) { }
 
-  saveQuiz(examQuiz: ExamQuiz): Observable<ExamQuiz> {
-    return this.http.post<ExamQuiz>(API_URL + `/user/examQuiz/create`, examQuiz);
+  getAll(): Observable<ExamQuiz[]>{
+    return this.http.get<ExamQuiz[]>(API_URL+'/user/examQuiz');
   }
 
-  saveTest(examTest: ExamTest): Observable<ExamQuiz> {
-    return this.http.post<ExamQuiz>(API_URL + `/user/examTest/create`, examTest);
+  saveQuiz(examQuiz: ExamQuiz): Observable<ExamQuiz> {
+    return this.http.post<ExamQuiz>(API_URL + `/user/examQuiz`, examQuiz);
   }
 
   findEQById(id: number) {
-    return this.http.get<ExamQuiz>(`${API_URL}/user/examQuiz/findExamQuizById/${id}`);
+    return this.http.get<ExamQuiz>(`${API_URL}/user/examQuiz/${id}`);
   }
 
   delete(id: number): Observable<ExamQuiz> {
-    return this.http.delete<ExamQuiz>(`${API_URL}/user/examQuiz/deleteById/${id}`);
+    return this.http.delete<ExamQuiz>(`${API_URL}/user/examQuiz/${id}`);
+  }
+
+  getAll2(): Observable<ExamTest[]>{
+    return this.http.get<ExamTest[]>(API_URL+'/user/examTest');
+  }
+
+  getAll1():Observable<ExamTest[]>{
+    return this.http.get<ExamTest[]>(API_URL+'/user/examHistory');
+  }
+
+  saveTest(examTest: ExamTest): Observable<ExamTest> {
+    return this.http.post<ExamTest>(API_URL + `/user/examTest`, examTest);
   }
 }
