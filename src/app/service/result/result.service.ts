@@ -16,5 +16,4 @@ export class ResultService {
   getAll(): Observable<User[]> {
     return this.http.get<User[]>(API_URL + '/user/getUserRoles');
   }
-
 }

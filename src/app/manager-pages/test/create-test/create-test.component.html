@@ -4,7 +4,8 @@
             <div class="col-md-12">
                 <div class="card">
                     <form [formGroup]="testForm" (ngSubmit)="submit()">
-                        <button style="margin-right: 15px; margin-top: 10px" type="submit" class="btn btn-primary btn-fill pull-right" [disabled]="!testForm.valid || !categoriesChoice.length || !booleanT">Create</button>
+                        <button type="submit" class="btn btn-primary btn-fill pull-right" [disabled]="!testForm.valid || !categoriesChoice.length || !booleanT" style="margin-left: 10px; margin-right: 15px; margin-top: 10px">Create</button>
+                        <button [routerLink]="['/manager/tests']" type="submit" class="btn btn-primary btn-fill pull-right" style="margin-top: 10px">Back to list</button>
                         <div class="header">
                             <h1 class="title">Create New Test</h1>
                         </div>
@@ -78,7 +79,6 @@
                                             </span>
                                         </section>
                                     </div>
-
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">

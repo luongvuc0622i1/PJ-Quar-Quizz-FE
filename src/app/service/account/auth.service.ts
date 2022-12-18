@@ -4,7 +4,10 @@ import {SignUpForm} from "../../model/account/SignUpForm";
 import {Observable} from "rxjs";
 import {LoginForm} from "../../model/account/LoginForm";
 import {JwtResponse} from "../../model/account/JwtResponse";
-const API_URL = 'http://localhost:8080'
+import {environment} from "../../../environments/environment";
+
+const API_URL=`${environment.apiUrl}`
+
 @Injectable({
   providedIn: 'root'
 })

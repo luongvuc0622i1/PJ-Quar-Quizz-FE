@@ -50,33 +50,4 @@ export class QuizService {
     getCategories(): Observable<Categories[]> {
         return this.http.get<Categories[]>(API_URL + '/manager/categories');
     }
-
-    change(quiz: any) {
-        let id;
-        let arCategory = [];
-        let arLevel;
-        let arTypeQuizzes;
-        let quiz1;
-        for (let i = 0; i < quiz.category.length; i++) {
-            id = quiz.category[i];
-            arCategory.push({id});
-        }
-        for (let i = 0; i < quiz.typeQuizzes.length; i++) {
-            id = quiz.typeQuizzes[i];
-            arTypeQuizzes = {id};
-        }
-        for (let i = 0; i < quiz.level.length; i++) {
-            id = quiz.level[i];
-            arLevel = {id};
-        }
-        quiz1 = {
-            answer: quiz.answer,
-            correct_answer: quiz.correct_answer,
-            name: quiz.name,
-            typeQuizzes: arTypeQuizzes,
-            level: arLevel,
-            category: arCategory
-        }
-        return quiz1;
-    }
 }

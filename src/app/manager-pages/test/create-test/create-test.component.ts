@@ -66,19 +66,20 @@ export class CreateTestComponent implements OnInit {
 
   submit(){
     const test= this.testForm.value;
-    console.log(test);
     const test1 = this.change(test);
-    console.log(test1);
-    this.testService.save(test1).subscribe(() =>{
+    this.testService.save(test1).subscribe(() =>{Swal.fire(
+        'Done!',
+        ' ',
+        'success'
+    )
       this.testForm.reset();
-      console.log('Create done!');
-      Swal.fire(
-          'Done!',
-          ' ',
-          'success'
-      )
     }, error => {
-      console.log(error)
+      console.log(error);
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Action wrong!'
+      })
     });
   }
 
@@ -130,14 +131,8 @@ export class CreateTestComponent implements OnInit {
         this.booleanT = true;
       }
     } else if (this.quizzesChoice.length = this.limit) {
-      // this.quizzesChoice.push(quiz);
       this.booleanT = true;
     }
-    // if (this.quizzesChoice.length = this.limit) {
-    //   this.booleanT = true;
-    // } else {
-    //   this.booleanT = false;
-    // }
   }
 
   inputNOQ(value: number) {

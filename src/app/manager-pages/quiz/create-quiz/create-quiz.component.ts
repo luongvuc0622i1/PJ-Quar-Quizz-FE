@@ -4,6 +4,7 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {TypeQuizzes} from "../../../model/typequizzes";
 import {Level} from "../../../model/level";
 import {Category} from "../../../model/category";
+import Swal from "sweetalert2";
 
 declare var $: any;
 
@@ -16,12 +17,6 @@ export class CreateQuizComponent implements OnInit {
     levels: Level[] = [];
     typeQuizzes: TypeQuizzes[] = [];
     categories: Category[] = [];
-
-
-    option1: any;
-    option2: any;
-    option3: any;
-    option4: any;
 
     constructor(private quizService: QuizService) {
     }
@@ -62,7 +57,6 @@ export class CreateQuizComponent implements OnInit {
         return this.quizForm.get('answer4')
     }
 
-
     get correctAnswer() {
         return this.quizForm.get('correct_answer')
     }
@@ -82,14 +76,21 @@ export class CreateQuizComponent implements OnInit {
 
     submit() {
         const quiz = this.quizForm.value;
-        console.log(quiz);
         const quiz1 = this.change(quiz);
-        console.log(quiz1);
         this.quizService.save(quiz1).subscribe(() => {
+            Swal.fire(
+                'Done!',
+                ' ',
+                'success'
+            );
             this.quizForm.reset();
-            this.showNotification('top', 'center')
         }, error => {
             console.log(error)
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Action wrong!'
+            })
         });
     }
 
@@ -135,23 +136,5 @@ export class CreateQuizComponent implements OnInit {
             categories: arCategory
         }
         return quiz1;
-    }
-
-
-    showNotification(from, align) {
-        // const type = ['','info','success','warning','danger'];
-        //
-        // var color = Math.floor((Math.random() * 4) + 1);
-        $.notify({
-            icon: "pe-7s-check",
-            message: "Create new quiz successfully!"
-        }, {
-            type: 'success',
-            timer: 1000,
-            placement: {
-                from: from,
-                align: align
-            }
-        });
     }
 }

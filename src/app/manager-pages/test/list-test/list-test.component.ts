@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {TestService} from "../../../service/test/test.service";
 import {Test} from "../../../model/test";
+import {MatPaginator} from "@angular/material/paginator";
 
 @Component({
   selector: 'app-list-test',
@@ -9,12 +10,28 @@ import {Test} from "../../../model/test";
 })
 export class ListTestComponent implements OnInit {
   tests: Test[] = [];
+  @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor(private testService: TestService) { }
 
   ngOnInit(): void {
     this.getAll();
   }
+
+  ngAfterViewInit() {
+    $(document).ready(function () {
+      $("#myInput").on("keyup", function () {
+        // @ts-ignore
+        var value = $(this).val().toLowerCase();
+        // @ts-ignore
+        $("#myTable tr").filter(function () {
+          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+      });
+    });
+    // @ts-ignore
+    $("#myTable tr").paginator = this.paginator;
+  };
 
   getAll() {
     this.testService.getAll().subscribe(testList => {

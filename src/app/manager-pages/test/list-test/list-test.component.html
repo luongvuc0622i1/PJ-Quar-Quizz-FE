@@ -3,27 +3,35 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="header" style="float: left">
+                    <div class="header col-lg-2" style="float: left">
                         <h1 class="title">Test List</h1>
-                        <p class="category">This is table of test list</p>
+                        <p class="category"></p>
                     </div>
-                    <div class="header" style="float: right">
-                        <button [routerLink]="['/manager/tests/create']" class="btn btn-primary btn-fill pull-right">Create New Test</button>
+                    <div class="header col-lg-8">
+                        <div class="search-box">
+                            <i class="material-icons">&#xE8B6;</i>
+                            <input type="text" class="form-control" id="myInput" placeholder="Search&hellip;">
+                        </div>
+                    </div>
+                    <div class="header col-lg-2" style="float: right">
+                        <button [routerLink]="['/manager/tests/create']" class="btn btn-primary btn-fill pull-right">
+                            <i class="pe-7s-plus"></i>  Create New Test
+                        </button>
                     </div>
                     <div class="content table-responsive table-full-width">
                         <table class="table table-hover table-striped">
                             <thead>
                             <tr>
-                                <th>ID</th>
-                                <th>Name</th>
-                                <th>Level</th>
-                                <th style="width: 100px">Pass Score</th>
+                                <th>ID <i class="fa fa-sort"></i></th>
+                                <th>Name <i class="fa fa-sort"></i></th>
+                                <th>Level <i class="fa fa-sort"></i></th>
+                                <th style="width: 120px">Pass Score <i class="fa fa-sort"></i></th>
                                 <th style="width: 200px"></th>
-                                <th>Max Time</th>
-                                <th></th>
+                                <th>Max Time <i class="fa fa-sort"></i></th>
+                                <th>Actions</th>
                             </tr>
                             </thead>
-                            <tbody>
+                            <tbody id="myTable">
                             <tr *ngFor="let test of tests; index as i">
                                 <td>{{i + 1}}</td>
                                 <td><a [routerLink]="['/manager/tests',test.id]">{{test.name}}</a></td>

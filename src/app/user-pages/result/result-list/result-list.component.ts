@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {ExamTest} from "../../../model/exam-test";
 import {ExamService} from "../../../service/exam/exam.service";
 import {ActivatedRoute, ParamMap} from "@angular/router";
+import {MatPaginator} from "@angular/material/paginator";
 
 @Component({
   selector: 'app-result-list',
@@ -11,8 +12,9 @@ import {ActivatedRoute, ParamMap} from "@angular/router";
 export class ResultListComponent implements OnInit {
     examTests: ExamTest[];
     examTestFilter: ExamTest[] = [];
-    idP: number = Number(localStorage.getItem('ID_KEY'));
+    roles: any;
     id: number;
+    @ViewChild(MatPaginator) paginator: MatPaginator;
 
     constructor(private examTestService : ExamService,
                 private activatedRoute: ActivatedRoute) {
@@ -23,7 +25,23 @@ export class ResultListComponent implements OnInit {
 
     ngOnInit() {
         this.getAll();
+        this.roles = localStorage.getItem('RoleSet_Key');
     }
+
+    ngAfterViewInit() {
+        $(document).ready(function () {
+            $("#myInput").on("keyup", function () {
+                // @ts-ignore
+                var value = $(this).val().toLowerCase();
+                // @ts-ignore
+                $("#myTable tr").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+        // @ts-ignore
+        $("#myTable tr").paginator = this.paginator;
+    };
 
     getAll(){
         this.examTestService.getAllET().subscribe(examTest =>{
@@ -39,5 +57,9 @@ export class ResultListComponent implements OnInit {
                 this.examTestFilter.push(this.examTests[i]);
             }
         }
+    }
+
+    back() {
+        history.back();
     }
 }

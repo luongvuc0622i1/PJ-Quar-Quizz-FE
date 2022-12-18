@@ -44,24 +44,21 @@ export class ProfileComponent implements OnInit {
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, Change now!'
+      confirmButtonText: 'Update'
     }).then((result) => {
       if (result.isConfirmed) {
-        Swal.fire(
-            'Done!',
-            ' ',
-            'success'
-        )
         const test= this.changePasswordForm.value;
-        console.log(test);
         const test1 = {
           "oldPassword": test.curPass,
           "newPassword": test.newPass
         };
-        console.log(test1);
         this.userService.update(test1).subscribe(() =>{
+          Swal.fire(
+              'Done!',
+              ' ',
+              'success'
+          )
           this.changePasswordForm.reset();
-          console.log('Update done!');
         }, error => {
           console.log('Current Password is fault!');
           Swal.fire({

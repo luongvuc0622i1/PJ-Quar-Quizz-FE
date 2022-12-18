@@ -2,10 +2,11 @@ import {Component, OnInit} from '@angular/core';
 import {TypeQuizzes} from "../../../model/typequizzes";
 import {QuizService} from "../../../service/quiz/quiz.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {ActivatedRoute, ParamMap} from "@angular/router";
+import {ActivatedRoute, ParamMap, Router} from "@angular/router";
 import {Level} from "../../../model/level";
 import {Category} from "../../../model/category";
 import {Quiz} from "../../../model/quiz";
+import Swal from "sweetalert2";
 
 declare var $: any;
 
@@ -25,6 +26,7 @@ export class UpdateQuizComponent implements OnInit {
     option2: any;
 
     constructor(private quizService: QuizService,
+                private router: Router,
                 private activatedRoute: ActivatedRoute) {
         this.quizForm = new FormGroup(    {
             name: new FormControl(''),
@@ -45,9 +47,7 @@ export class UpdateQuizComponent implements OnInit {
 
     private getQuiz(id: number) {
         return this.quizService.findById(id).subscribe(quiz => {
-            console.log(quiz)
             let quiz2 = this.changeToForm(quiz);
-            console.log(quiz2)
             this.quizForm = new FormGroup({
                 name: new FormControl(quiz2.name, [Validators.required]),
                 answer1: new FormControl(quiz2.answer1, [Validators.required]),
@@ -65,7 +65,6 @@ export class UpdateQuizComponent implements OnInit {
 
     ngOnInit(): void {
         this.getAll();
-
     }
 
     get name() {
@@ -88,7 +87,6 @@ export class UpdateQuizComponent implements OnInit {
         return this.quizForm.get('answer4')
     }
 
-
     get correctAnswer() {
         return this.quizForm.get('correct_answer')
     }
@@ -107,14 +105,22 @@ export class UpdateQuizComponent implements OnInit {
 
     updateQuiz(id: number) {
         const quiz = this.quizForm.value;
-        console.log(quiz);
         const quiz1 = this.changeToQuiz(quiz);
-        console.log(quiz1);
         this.quizService.update(id, quiz1).subscribe(() => {
             this.quizForm.reset();
-            this.showNotification('top', 'center')
+            Swal.fire(
+                'Done!',
+                ' ',
+                'success'
+            );
+            this.router.navigate(['/manager/quizzes']);
         }, error => {
-            console.log(error)
+            console.log(error);
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Action wrong!'
+            })
         });
     }
 
@@ -195,22 +201,4 @@ export class UpdateQuizComponent implements OnInit {
         }
         return quiz2;
     }
-
-    showNotification(from, align) {
-        // const type = ['','info','success','warning','danger'];
-        //
-        // var color = Math.floor((Math.random() * 4) + 1);
-        $.notify({
-            icon: "pe-7s-check",
-            message: "Update quiz successfully!"
-        }, {
-            type: 'success',
-            timer: 1000,
-            placement: {
-                from: from,
-                align: align
-            }
-        });
-    }
-
 }

@@ -1,7 +1,5 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
 import {Location} from '@angular/common';
-import {Router} from "@angular/router";
-import Swal from 'sweetalert2';
 import {LogoutService} from "../../service/logout.service";
 
 @Component({

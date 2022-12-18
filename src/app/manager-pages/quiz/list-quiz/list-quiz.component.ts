@@ -1,7 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {QuizService} from "../../../service/quiz/quiz.service";
 import Swal from "sweetalert2";
-import {ActivatedRoute, Router} from "@angular/router";
+import {Router} from "@angular/router";
 import {MatPaginator} from "@angular/material/paginator";
 import {Quiz} from "../../../model/quiz";
 
@@ -15,9 +15,8 @@ export class ListQuizComponent implements OnInit {
     quizzes: Quiz[] = [];
     @ViewChild(MatPaginator) paginator: MatPaginator;
 
-    constructor(private quizService: QuizService, private activatedRoute: ActivatedRoute,
-                private router: Router) {
-    }
+    constructor(private quizService: QuizService,
+                private router: Router) {}
 
     ngOnInit(): void {
         this.getAll();
@@ -45,18 +44,7 @@ export class ListQuizComponent implements OnInit {
         });
     }
 
-    selectedId: any = '';
-
-    private getChild(quiz: Quiz, id: number) {
-        // Check if already expanded
-        if (this.selectedId == id) {
-            this.selectedId = '';
-        } else {
-            this.selectedId = id;
-        }
-    }
-
-    deleteQuiz(id) {
+    deleteQuiz(id: number) {
         Swal.fire({
             title: 'Delete quiz',
             text: "Are you sure to delete this quiz?",
@@ -69,8 +57,19 @@ export class ListQuizComponent implements OnInit {
             if (result.isConfirmed) {
                 this.quizService.delete(id).subscribe(() => {
                     this.router.navigate(['/manager/quizzes']);
+                    Swal.fire(
+                        'Done!',
+                        ' ',
+                        'success'
+                    );
+                    // location.reload();
                 }, e => {
                     console.log(e);
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Action wrong!'
+                    })
                 });
             }
         })

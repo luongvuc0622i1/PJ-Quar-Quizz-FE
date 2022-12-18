@@ -3,34 +3,48 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="header" style="float: left">
-                        <h1 class="title">Result List
-                        </h1>
+                    <div class="header col-lg-2" style="float: left">
+                        <h1 class="title">Result List</h1>
                         <p class="category"></p>
+                    </div>
+                    <div class="header col-lg-8">
+                        <div class="search-box">
+                            <i class="material-icons">&#xE8B6;</i>
+                            <input type="text" class="form-control" id="myInput" placeholder="Search&hellip;">
+                        </div>
+                    </div>
+                    <div class="header col-lg-2" style="float: right; height: 55px">
+                        <button *ngIf="roles[7] == 2" [routerLink]="['/manager/users']" class="btn btn-primary btn-fill pull-right">Back to list</button>
                     </div>
                     <div class="content table-responsive table-full-width">
                         <table class="table table-hover table-striped">
                             <thead>
                             <tr>
-                                <th>NO</th>
-                                <th>TEST NAME</th>
-                                <th>TEST TIME</th>
-                                <th>TEST LEVEL</th>
-                                <th>PASS SCORE</th>
-                                <th>USER SCORE</th>
+                                <th>ID <i class="fa fa-sort"></i></th>
+                                <th>Name <i class="fa fa-sort"></i></th>
+                                <th>Max Time <i class="fa fa-sort"></i></th>
+                                <th>Level <i class="fa fa-sort"></i></th>
+                                <th>Pass Score <i class="fa fa-sort"></i></th>
+                                <th>User Score <i class="fa fa-sort"></i></th>
                                 <th>ACTION</th>
                             </tr>
                             </thead>
-                            <tbody>
+                            <tbody id="myTable">
                             <tr *ngFor="let exam of examTestFilter; index as i">
                                 <td>{{i + 1}}</td>
-                                <td>{{exam.examQuizzes[i].test.name}}</td>
-                                <td>{{exam.examQuizzes[i].test.maxTime}}</td>
-                                <td>{{exam.examQuizzes[i].test.level.name}}</td>
-                                <td>{{exam.examQuizzes[i].test.passScore}}</td>
-                                <td>{{(exam.numOfTA/exam.examQuizzes[i].test.quizzes.length*100).toFixed()}}</td>
-                                <td>
+                                <td>{{exam.examQuizzes[0].test.name}}</td>
+                                <td>{{exam.examQuizzes[0].test.maxTime}}</td>
+                                <td>{{exam.examQuizzes[0].test.level.name}}</td>
+                                <td>{{exam.examQuizzes[0].test.passScore}}</td>
+                                <td>{{(exam.numOfTA/exam.examQuizzes[0].test.quizzes.length*100).toFixed()}}</td>
+                                <td *ngIf="roles[7] == 3">
                                     <a [routerLink]="['/user/results/',exam.id]" class="view" title="View" data-toggle="tooltip">
+                                        <i class="material-icons">&#xE417;</i>
+                                        <p class="hidden-lg hidden-md">View</p>
+                                    </a>
+                                </td>
+                                <td *ngIf="roles[7] == 2">
+                                    <a [routerLink]="['/manager/results/',exam.id]" class="view" title="View" data-toggle="tooltip">
                                         <i class="material-icons">&#xE417;</i>
                                         <p class="hidden-lg hidden-md">View</p>
                                     </a>

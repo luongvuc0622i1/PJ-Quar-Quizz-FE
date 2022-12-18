@@ -109,7 +109,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <button style="margin-right: 15px; margin-top: 10px" type="submit" class="btn btn-primary btn-fill pull-right" [disabled]="!quizForm.valid">Update</button>
+                            <button type="submit" class="btn btn-primary btn-fill pull-right" [disabled]="!quizForm.valid" style="margin-left: 10px">Update</button>
+                            <button [routerLink]="['/manager/quizzes']" type="submit" class="btn btn-primary btn-fill pull-right">Back to list</button>
                             <div class="clearfix"></div>
                         </div>
                     </form>

@@ -21,10 +21,6 @@ export class CategoryService {
         return this.http.post<Category>(API_URL +'/manager/categories',category);
     }
 
-    findById(id:number): Observable<Category>{
-        return this.http.get<Category>(`${API_URL}/manager/categories/${id}`);
-    }
-
     delete(id:number): Observable<Category>{
         return this.http.delete<Category>(`${API_URL}/manager/categories/${id}`);
     }

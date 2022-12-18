@@ -43,12 +43,10 @@ export class PlayingPageComponent implements OnInit {
 
   ngAfterViewInit() {
     this.showTab(0);
-
     this.setTimeOut();
   }
 
   //step
-
   showTab(n) {
     // This function will display the specified tab of the form ...
     var x = document.getElementsByClassName("tab");
@@ -84,38 +82,6 @@ export class PlayingPageComponent implements OnInit {
     this.showTab(this.currentTab);
   }
 
-  validateForm() {
-    // This function deals with validation of the form fields
-    var x, y, i, valid = true;
-    x = document.getElementsByClassName("tab");
-    y = x[this.currentTab].getElementsByTagName("input");
-    // A loop that checks every input field in the current tab:
-    for (i = 0; i < y.length; i++) {
-      // If a field is empty...
-      if (y[i].value == "") {
-        // add an "invalid" class to the field:
-        y[i].className += " invalid";
-        // and set the current valid status to false:
-        valid = false;
-      }
-    }
-    // If the valid status is true, mark the step as finished and valid:
-    if (valid) {
-      document.getElementsByClassName("step")[this.currentTab].className += " finish";
-    }
-    return valid; // return the valid status
-  }
-
-  // fixStepIndicator(n) {
-  //   // This function removes the "active" class of all steps...
-  //   var i, x = document.getElementsByClassName("step");
-  //   for (i = 0; i < x.length; i++) {
-  //     x[i].className = x[i].className.replace(" active", "");
-  //   }
-  //   //... and adds the "active" class to the current step:
-  //   x[n].className += " active";
-  // }
-
   getQuizId(id: number) {
     this.id_quiz = id;
   }
@@ -140,7 +106,6 @@ export class PlayingPageComponent implements OnInit {
   }
 
   send() {
-    console.log(this.examQuiz);
     this.examService.saveQuiz(this.examQuiz).subscribe(examQuizDB => {
       this.examService.findEQById(examQuizDB.id).subscribe(examQuiz => {
         this.examQuizAr.push(examQuiz);
@@ -162,29 +127,31 @@ export class PlayingPageComponent implements OnInit {
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, Submit test!'
+      confirmButtonText: 'Submit'
     }).then((result) => {
       if (result.isConfirmed) {
-        this.id_user = Number(localStorage.getItem('ID_KEY'));
-        console.log(this.examQuizzesDoneCheck);
-        this.examTest = {
-          "examQuizzes": this.examQuizzesDoneCheck,
-          // @ts-ignore
-          appUser: {"id":this.id_user}
-        }
-        this.examService.saveTest(this.examTest).subscribe(() =>{
-          console.log('Create done!');
-          Swal.fire(
-              'Done!',
-              ' ',
-              'success'
-          )
-        }, error => {
-          console.log('chua nop dc bai!');
-        });
-        window.location.href = 'http://localhost:4200/user/exam/list';
+        this.submitDone();
       }
     })
+  }
+
+  submitDone() {
+    this.id_user = Number(localStorage.getItem('ID_KEY'));
+    this.examTest = {
+      "examQuizzes": this.examQuizzesDoneCheck,
+      // @ts-ignore
+      appUser: {"id":this.id_user}
+    }
+    this.examService.saveTest(this.examTest).subscribe(() =>{
+      Swal.fire(
+          'Done!',
+          ' ',
+          'success'
+      )
+      this.router.navigate(['/user/home']);
+    }, error => {
+      console.log('chua nop dc bai!');
+    });
   }
 
   checkAr(examQuizzes: ExamQuiz[]) {
@@ -242,44 +209,23 @@ export class PlayingPageComponent implements OnInit {
       var distance = countDownDate - now;
 
       // Tính toán số ngày, giờ, phút, giây từ thời gian chênh lệch
-      var hours = Math.floor(distance / (1000 * 60 * 60));
-      var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      var hours: string | number = Math.floor(distance / (1000 * 60 * 60));
+      var minutes: string | number = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      var seconds: string | number = Math.floor((distance % (1000 * 60)) / 1000);
 
       // HIển thị chuỗi thời gian trong thẻ p
+      hours = hours < 10 ? "0" + hours : hours;
+      minutes = minutes < 10 ? "0" + minutes : minutes;
+      seconds = seconds < 10 ? "0" + seconds : seconds;
       document.getElementById("demo").innerHTML = hours + ":"
           + minutes + ":" + seconds;
 
       // Nếu thời gian kết thúc, hiển thị chuỗi thông báo
       if (distance < 0) {
         clearInterval(x);
-        document.getElementById("demo").innerHTML = "0:0:0"
+        document.getElementById("demo").innerHTML = "00:00:00"
         document.getElementById("submit").click();
       }
     }, 1000);
-  }
-
-  logOut() {
-    Swal.fire({
-      title: 'Are you sure?',
-      text: "You won't be able to revert this!",
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, Logout!'
-    }).then((result) => {
-      if (result.isConfirmed) {
-        Swal.fire(
-            'Log Out',
-            'Go to Home Page!',
-            'success'
-        )
-        localStorage.clear();
-        this.router.navigate(['home']).then(() => {
-          location.reload()
-        })
-      }
-    })
   }
 }

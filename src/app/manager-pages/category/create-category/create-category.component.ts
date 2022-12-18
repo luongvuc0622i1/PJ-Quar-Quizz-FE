@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {CategoryService} from "../../../service/category/category.service";
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-create-category',
@@ -8,37 +9,37 @@ import {CategoryService} from "../../../service/category/category.service";
   styleUrls: ['./create-category.component.scss']
 })
 export class CreateCategoryComponent implements OnInit {
-  categoryForm : FormGroup=new FormGroup({
-    id: new FormControl(),
-    name :new FormControl("", [Validators.required, Validators.minLength(3)])
-  });
-  get name(){
-    return this.categoryForm.get('name')
-  }
-  constructor( private categoryService : CategoryService) { }
+
+  constructor( private categoryService : CategoryService) {}
+
   ngOnInit(): void {
   }
+
+  categoryForm: FormGroup = new FormGroup({
+    id: new FormControl(),
+    name :new FormControl("", [Validators.required])
+  });
+
+  get name(){
+    return this.categoryForm.get('name');
+  }
+
   submit(){
     const  category =this.categoryForm.value;
     this.categoryService.save(category).subscribe(() =>{
+      Swal.fire(
+          'Done!',
+          ' ',
+          'success'
+      );
       this.categoryForm.reset();
-      const type = ['','warning','warning','warning','warning'];
-
-      var color = Math.floor((Math.random() * 4) + 1);
-      // @ts-ignore
-      $.notify({
-        icon: "pe-7s-gift",
-        message: "Congratulations <b>Create success Categories</b>."
-      },{
-        type: type[color],
-        timer: 1000,
-        placement: {
-          from: "top",
-          align: "center"
-        }
-      });
     }, e=>{
       console.log(e);
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Action wrong!'
+      })
     });
   }
 
