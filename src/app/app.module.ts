@@ -16,12 +16,10 @@ import { UserLayoutComponent } from './layouts/user-layout/user-layout.component
 import {MatPaginatorModule} from "@angular/material/paginator";
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { AccountPageComponent } from './account-page/account-page.component';
-import { PlayingPageComponent } from './playing-page/playing-page.component';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
-import {SidebarManagerModule} from "./layouts/manager-layout/sidebar/sidebar-manager.module";
 import {SidebarAdminModule} from "./layouts/admin-layout/sidebar/sidebar-admin.module";
-import { ListCategoryComponent } from './manager-pages/category/list-category/list-category.component';
-import { CreateCategoryComponent } from './manager-pages/category/create-category/create-category.component';
+import {SidebarManagerModule} from "./layouts/manager-layout/sidebar/sidebar-manager.module";
+
 @NgModule({
     imports: [
         BrowserAnimationsModule,
@@ -44,7 +42,6 @@ import { CreateCategoryComponent } from './manager-pages/category/create-categor
         LandingPageComponent,
         AccountPageComponent,
         UserLayoutComponent,
-        PlayingPageComponent,
         ManagerLayoutComponent,
         AdminLayoutComponent,
     ],

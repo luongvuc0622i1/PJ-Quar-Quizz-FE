@@ -2,6 +2,7 @@ import { Component, OnInit, ElementRef } from '@angular/core';
 import {Location} from '@angular/common';
 import {Router} from "@angular/router";
 import Swal from 'sweetalert2';
+import {LogoutService} from "../../service/logout.service";
 
 @Component({
     selector: 'navbar-cmp',
@@ -13,7 +14,9 @@ export class NavbarComponent implements OnInit{
     private toggleButton: any;
     private sidebarVisible: boolean;
 
-    constructor(location: Location,  private element: ElementRef, private router: Router) {
+    constructor(location: Location,
+                private element: ElementRef,
+                private logoutService: LogoutService) {
       this.location = location;
           this.sidebarVisible = false;
     }
@@ -55,26 +58,6 @@ export class NavbarComponent implements OnInit{
     }
 
     logOut() {
-        Swal.fire({
-            title: 'Are you sure?',
-            text: "You won't be able to revert this!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, Logout!'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                Swal.fire(
-                    'Log Out',
-                    'Go to Home Page!',
-                    'success'
-                )
-                localStorage.clear();
-                this.router.navigate(['home']).then(()=>{
-                    location.reload()
-                })
-            }
-        })
+        this.logoutService.logOut();
     }
 }

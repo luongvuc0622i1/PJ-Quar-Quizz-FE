@@ -17,8 +17,6 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatPaginatorModule} from "@angular/material/paginator";
 import {ListUserComponent} from "../../manager-pages/result/list-user/list-user.component";
 import {MatIconModule} from "@angular/material/icon";
-import {ListResultComponent} from "../../manager-pages/result/list-result/list-result.component";
-import {DetailResultComponent} from "../../manager-pages/result/detail-result/detail-result.component";
 import {ProfileComponent} from "../../manager-pages/profile/profile.component";
 import {ListCategoryComponent} from "../../manager-pages/category/list-category/list-category.component";
 import {CreateCategoryComponent} from "../../manager-pages/category/create-category/create-category.component";
@@ -49,8 +47,6 @@ import {CreateCategoryComponent} from "../../manager-pages/category/create-categ
         DetailTestComponent,
         CreateTestComponent,
         ListUserComponent,
-        ListResultComponent,
-        DetailResultComponent,
     ]
 })
 

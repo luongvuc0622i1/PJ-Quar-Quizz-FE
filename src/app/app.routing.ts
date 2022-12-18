@@ -8,6 +8,7 @@ import {AuthGuard} from "./service/security/auth.guard";
 import {LandingPageComponent} from "./landing-page/landing-page.component";
 import {AccountPageComponent} from "./account-page/account-page.component";
 import {AdminLayoutComponent} from "./layouts/admin-layout/admin-layout.component";
+import {PlayingPageComponent} from "./user-pages/playing-page/playing-page.component";
 
 const routes: Routes = [
     {
@@ -26,6 +27,9 @@ const routes: Routes = [
                 path: '',
                 loadChildren: () => import('./layouts/user-layout/user-layout.module').then(x => x.UserLayoutModule)
             }]
+    },
+    {   path: 'user/playing/:id',
+        component: PlayingPageComponent
     },
     {
         path: 'manager', canActivate: [AuthGuard],

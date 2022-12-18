@@ -6,14 +6,14 @@ import {UserLayoutRoutes} from './user-layout.routing';
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {MatTableModule} from "@angular/material/table";
 import {MatExpansionModule} from "@angular/material/expansion";
-import {ExamListComponent} from "../../exam/exam-list/exam-list.component";
-import {ExamDetailComponent} from "../../exam/exam-detail/exam-detail.component";
-import {HistoryListComponent} from "../../history/history-list/history-list.component";
-import {HistoryDetailComponent} from "../../history/history-detail/history-detail.component";
-import {ExamQuizDetailComponent} from "../../examQuiz/exam-quiz-detail/exam-quiz-detail.component";
+import {ResultListComponent} from "../../user-pages/result/result-list/result-list.component";
+import {ResultDetailComponent} from "../../user-pages/result/result-detail/result-detail.component";
 import {MatIconModule} from "@angular/material/icon";
 import {MatCardModule} from "@angular/material/card";
 import {MatGridListModule} from "@angular/material/grid-list";
+import {PlayingPageComponent} from "../../user-pages/playing-page/playing-page.component";
+import {UserHomeComponent} from "../../user-pages/user-home/user-home.component";
+
 @NgModule({
     imports: [
         CommonModule,
@@ -28,11 +28,10 @@ import {MatGridListModule} from "@angular/material/grid-list";
         MatGridListModule,
     ],
     declarations: [
-        ExamListComponent,
-        ExamDetailComponent,
-        HistoryDetailComponent,
-        HistoryListComponent,
-        ExamQuizDetailComponent
+        UserHomeComponent,
+        PlayingPageComponent,
+        ResultListComponent,
+        ResultDetailComponent,
     ]
 })
 

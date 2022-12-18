@@ -1,18 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import {Test} from "../../model/test";
-import {TestService} from "../../service/test/test.service";
-import {ActivatedRoute, ParamMap, Router} from "@angular/router";
-import {ExamService} from "../../service/exam/exam.service";
-import {ExamTest} from "../../model/exam-test";
 import {ExamQuiz} from "../../model/exam-quiz";
+import {ExamTest} from "../../model/exam-test";
+import {TestService} from "../../service/test/test.service";
+import {ExamService} from "../../service/exam/exam.service";
+import {ActivatedRoute, ParamMap, Router} from "@angular/router";
 import Swal from "sweetalert2";
 
 @Component({
-  selector: 'app-exam-detail',
-  templateUrl: './exam-detail.component.html',
-  styleUrls: ['./exam-detail.component.scss']
+  selector: 'app-playing-page',
+  templateUrl: './playing-page.component.html',
+  styleUrls: ['./playing-page.component.scss']
 })
-export class ExamDetailComponent implements OnInit {
+export class PlayingPageComponent implements OnInit {
   test: Test;
   answerUserAr: number[] = [];
   answerUser: String = '';

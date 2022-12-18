@@ -11,7 +11,6 @@ import {Test} from "../../../model/test";
 export class DetailTestComponent implements OnInit {
   test: Test;
   id: number;
-  panelOpenState = false;
 
   constructor(private testService: TestService,
               private activatedRoute: ActivatedRoute) {
