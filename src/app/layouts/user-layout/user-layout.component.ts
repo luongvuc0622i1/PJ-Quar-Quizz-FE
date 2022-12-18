@@ -7,6 +7,7 @@ import {LogoutService} from "../../service/logout.service";
     styleUrls: ['./user-layout.component.scss']
 })
 export class UserLayoutComponent implements OnInit {
+    id: number = Number(localStorage.getItem('ID_KEY'));
 
     constructor(private logoutService: LogoutService) {
     }

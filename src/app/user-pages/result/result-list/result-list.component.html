@@ -22,7 +22,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr *ngFor="let exam of examTestDetail; index as i">
+                            <tr *ngFor="let exam of examTestFilter; index as i">
                                 <td>{{i + 1}}</td>
                                 <td>{{exam.examQuizzes[i].test.name}}</td>
                                 <td>{{exam.examQuizzes[i].test.maxTime}}</td>
