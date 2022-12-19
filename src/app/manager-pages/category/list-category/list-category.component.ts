@@ -67,7 +67,7 @@ export class ListCategoryComponent implements OnInit {
                     Swal.fire({
                         icon: 'error',
                         title: 'Delete fail!',
-                        text: 'If the category has quizzes or test, it can not be deleted.'
+                        text: 'If the category has quiz or test, it can not be deleted.'
                     })
                 });
             }

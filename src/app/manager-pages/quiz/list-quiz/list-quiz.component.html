@@ -36,7 +36,7 @@
                                 <td>{{quiz.typeQuizzes.name}}</td>
                                 <td>{{quiz.level.name}}</td>
                                 <td>
-                                    <a class="view " title="View" data-toggle="collapse" data-parent="#accordion" href="#{{i}}">
+                                    <a class="view" title="View" data-toggle="collapse" data-parent="#accordion" href="#{{i}}">
                                         <i class="material-icons">&#xE417;</i>
                                         <p class="hidden-lg hidden-md">View</p>
                                     </a>
@@ -52,8 +52,8 @@
                                     </a>
                                 </td>
                             </tr>
-                            <tr id="{{i}}" class="panel-collapse collapse in">
-                                <td colspan="6" class="panel-body text-muted">
+                            <tr id="{{i}}" class="panel-collapse collapse">
+                                <td colspan="6" class="panel-body text-muted" >
                                     Answer: {{quiz.answer}}<br>
                                     Correct answer: {{quiz.correct_answer}}
                                 </td>
