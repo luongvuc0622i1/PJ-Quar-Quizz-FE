@@ -19,6 +19,7 @@ import { AccountPageComponent } from './account-page/account-page.component';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import {SidebarAdminModule} from "./layouts/admin-layout/sidebar/sidebar-admin.module";
 import {SidebarManagerModule} from "./layouts/manager-layout/sidebar/sidebar-manager.module";
+import { ForgetPasswordComponent } from './forget-password/forget-password.component';
 
 @NgModule({
     imports: [
@@ -44,6 +45,7 @@ import {SidebarManagerModule} from "./layouts/manager-layout/sidebar/sidebar-man
         UserLayoutComponent,
         ManagerLayoutComponent,
         AdminLayoutComponent,
+        ForgetPasswordComponent,
     ],
     providers: [
         {
