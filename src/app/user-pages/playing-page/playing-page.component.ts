@@ -23,6 +23,8 @@ export class PlayingPageComponent implements OnInit {
   examQuizAr: ExamQuiz[] = [];
   examTest: ExamTest;
   examQuizzesDoneCheck: [];
+  numOfTA: number;
+  arrCheck: ExamQuiz[] = [];
 
   //step
   currentTab = 0; // Current tab is set to be the first tab (0)
@@ -135,12 +137,47 @@ export class PlayingPageComponent implements OnInit {
     })
   }
 
+  setNumOfTA(arr: ExamQuiz[]): number {
+    console.log(arr);
+    let count = 0;
+    for (let i = 0; i < arr.length; i++) {
+      console.log(arr[i]);
+      //Kiem tra cau tra loi
+      const a = arr[i].answerUser.split(';'); //day la dap an nguoi dung
+      const b = arr[i].quiz.correct_answer.split(';'); //day la correct answer
+      console.log(a);
+      console.log(b);
+      let isEqual = true;
+      if (a.length == b.length) {
+        for (let i=0; i < a.length; i++) {
+          let equal = false;
+          for (let j = 0; j < b.length; j++) {
+            if(a[i] == b[j]) {
+              equal = true;
+              break;
+            }
+          }
+          isEqual &&= equal;
+        }
+      } else {
+        isEqual = false;
+      }
+      if (isEqual) {
+        count++;
+      }
+    }
+    return count;
+  }
+
   submitDone() {
+    this.checkAr(this.examQuizAr);
     this.id_user = Number(localStorage.getItem('ID_KEY'));
+    this.numOfTA = this.setNumOfTA(this.arrCheck);
     this.examTest = {
       "examQuizzes": this.examQuizzesDoneCheck,
       // @ts-ignore
-      appUser: {"id":this.id_user}
+      appUser: {"id":this.id_user},
+      "numOfTA": this.numOfTA
     }
     this.examService.saveTest(this.examTest).subscribe(() =>{
       Swal.fire(
@@ -155,8 +192,8 @@ export class PlayingPageComponent implements OnInit {
   }
 
   checkAr(examQuizzes: ExamQuiz[]) {
-    console.log(examQuizzes);
     this.examQuizzesDoneCheck = [];
+    this.arrCheck = [];
     let examQuizzesRV = examQuizzes.reverse();
     let arrC = [];
     let arrCid = [];
@@ -166,6 +203,7 @@ export class PlayingPageComponent implements OnInit {
       if(!arrC.includes(examQuizzesRV[i].quiz.id)) {
         arrC.push(examQuizzesRV[i].quiz.id);
         arrCid.push(examQuizzesRV[i].id);
+        this.arrCheck.push(examQuizzesRV[i]);
       } else {
         arrD.push(examQuizzesRV[i].quiz.id);
         arrDid.push(examQuizzesRV[i].id);
