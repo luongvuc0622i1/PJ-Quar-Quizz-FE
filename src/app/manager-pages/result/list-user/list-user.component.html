@@ -24,7 +24,7 @@
                                 <th>Username <i class="fa fa-sort"></i></th>
                                 <th>Email <i class="fa fa-sort"></i></th>
                                 <th>Status <i class="fa fa-sort"></i></th>
-                                <th>Actions</th>
+                                <th *ngIf="roles[7] == 2">Actions</th>
                             </tr>
                             </thead>
                             <tbody id="myTable">
@@ -33,9 +33,9 @@
                                 <td>{{user.name}}</td>
                                 <td>{{user.username}}</td>
                                 <td>{{user.email}}</td>
-                                <td *ngIf="user.status==1">Active</td>
-                                <td *ngIf="user.status==0">Lock</td>
-                                <td>
+                                <td *ngIf="user.status==1"><mat-icon (click)="lock(user.id)">lock_open</mat-icon></td>
+                                <td *ngIf="user.status==0"><mat-icon (click)="open(user.id)" color="warn">lock</mat-icon></td>
+                                <td *ngIf="roles[7] == 2">
                                     <a [routerLink]="['/manager/users',user.id]" class="view" title="View" data-toggle="tooltip">
                                         <i class="material-icons">&#xE417;</i>
                                         <p class="hidden-lg hidden-md">View</p>
