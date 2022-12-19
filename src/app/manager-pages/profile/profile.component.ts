@@ -14,7 +14,6 @@ export class ProfileComponent implements OnInit {
   user: any;
   password: any;
   id: number;
-  firstName: string;
 
   constructor(private userService: UserService) { }
 
@@ -79,8 +78,6 @@ export class ProfileComponent implements OnInit {
     this.userService.findById(id).subscribe(user => {
       this.user = user;
       this.password = user.password;
-      // @ts-ignore
-      this.firstName = user.name.split(' ')[0].join(' ');
     });
   }
 

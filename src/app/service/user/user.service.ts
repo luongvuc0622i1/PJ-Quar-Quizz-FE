@@ -15,10 +15,10 @@ export class UserService {
   }
 
   findById(id: number) {
-    return this.http.get<User>(`${API_URL}/users/${id}`);
+    return this.http.get<User>(`${API_URL}/user/${id}`);
   }
 
   update(id: number, user: any): Observable<User> {
-    return this.http.put<User>(`${API_URL}/changePassword/${id}`, user);
+    return this.http.put<User>(`${API_URL}/user/changePassword/${id}`, user);
   }
 }
