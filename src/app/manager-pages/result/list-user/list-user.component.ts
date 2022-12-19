@@ -1,7 +1,6 @@
-import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {ResultService} from "../../../service/result/result.service";
 import {User} from "../../../model/user";
-import {MatPaginator} from "@angular/material/paginator";
 import Swal from "sweetalert2";
 
 @Component({
@@ -12,7 +11,6 @@ import Swal from "sweetalert2";
 export class ListUserComponent implements OnInit, AfterViewInit {
   users: User[] = [];
   roles: any;
-  @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor(private resultService: ResultService) { }
 
@@ -32,8 +30,6 @@ export class ListUserComponent implements OnInit, AfterViewInit {
         });
       });
     });
-    // @ts-ignore
-    $("#myTable tr").paginator = this.paginator;
   };
 
   getAll() {

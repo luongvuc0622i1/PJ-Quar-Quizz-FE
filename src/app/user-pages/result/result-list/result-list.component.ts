@@ -1,8 +1,7 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ExamTest} from "../../../model/exam-test";
 import {ExamService} from "../../../service/exam/exam.service";
 import {ActivatedRoute, ParamMap} from "@angular/router";
-import {MatPaginator} from "@angular/material/paginator";
 
 @Component({
   selector: 'app-result-list',
@@ -14,7 +13,6 @@ export class ResultListComponent implements OnInit {
     examTestFilter: ExamTest[] = [];
     roles: any;
     id: number;
-    @ViewChild(MatPaginator) paginator: MatPaginator;
 
     constructor(private examTestService : ExamService,
                 private activatedRoute: ActivatedRoute) {
@@ -39,8 +37,6 @@ export class ResultListComponent implements OnInit {
                 });
             });
         });
-        // @ts-ignore
-        $("#myTable tr").paginator = this.paginator;
     };
 
     getAll(){

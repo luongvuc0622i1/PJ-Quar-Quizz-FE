@@ -1,8 +1,7 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ExamService} from "../../../service/exam/exam.service";
 import {ActivatedRoute, ParamMap} from "@angular/router";
 import {ExamTest} from "../../../model/exam-test";
-import {MatPaginator} from "@angular/material/paginator";
 import {ExamQuiz} from "../../../model/exam-quiz";
 
 @Component({
@@ -14,7 +13,6 @@ export class ResultDetailComponent implements OnInit {
     examTest: ExamTest;
     id: number;
     boolean: boolean;
-    @ViewChild(MatPaginator) paginator: MatPaginator;
 
     constructor(private examTestService : ExamService,
                 private activatedRoute: ActivatedRoute) {
@@ -40,8 +38,6 @@ export class ResultDetailComponent implements OnInit {
                 });
             });
         });
-        // @ts-ignore
-        $("#myTable tr").paginator = this.paginator;
         this.checkStatus(this.examTest.examQuizzes);
     };
 

@@ -23,7 +23,7 @@
                                 <th>Name <i class="fa fa-sort"></i></th>
                                 <th>Username <i class="fa fa-sort"></i></th>
                                 <th>Email <i class="fa fa-sort"></i></th>
-                                <th>Status <i class="fa fa-sort"></i></th>
+                                <th>Status</th>
                                 <th *ngIf="roles[7] == 2">Actions</th>
                             </tr>
                             </thead>
@@ -44,11 +44,6 @@
                             </tr>
                             </tbody>
                         </table>
-                        <mat-paginator [length]=users.length
-                                       [pageSize]="5"
-                                       [pageSizeOptions]="[5,10,20,30]"
-                                       aria-label="Select page">
-                        </mat-paginator>
                     </div>
                 </div>
             </div>
