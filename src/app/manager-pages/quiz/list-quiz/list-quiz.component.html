@@ -25,17 +25,22 @@
                                 <th class="col-md-1">ID <i class="fa fa-sort"></i></th>
                                 <th class="col-md-6">Quiz <i class="fa fa-sort"></i></th>
                                 <th class="col-md-2">Quiz Type <i class="fa fa-sort"></i></th>
-                                <th class="col-md-2">Level <i class="fa fa-sort"></i></th>
-                                <th class="col-md-1">Actions</th>
+                                <th class="col-md-1">Level <i class="fa fa-sort"></i></th>
+                                <th class="col-md-2">Actions</th>
                             </tr>
                             </thead>
                             <tbody *ngFor="let quiz of quizzes; index as i" id="myTable">
-                            <tr class="panel-collapse" data-toggle="collapse" data-target="#child">
+                            <tr>
                                 <td>{{i + 1}}</td>
                                 <td>{{quiz.name}}</td>
                                 <td>{{quiz.typeQuizzes.name}}</td>
                                 <td>{{quiz.level.name}}</td>
                                 <td>
+                                    <a class="view " title="View" data-toggle="collapse" data-parent="#accordion" href="#{{i}}">
+                                        <i class="material-icons">&#xE417;</i>
+                                        <p class="hidden-lg hidden-md">View</p>
+                                    </a>
+
                                     <a [routerLink]="['/manager/quizzes',quiz.id]" class="edit" title="Edit" data-toggle="tooltip">
                                         <i class="material-icons">&#xE254;</i>
                                         <p class="hidden-lg hidden-md">Update</p>
@@ -47,8 +52,8 @@
                                     </a>
                                 </td>
                             </tr>
-                            <tr id="child" class="collapse text-muted">
-                                <td colspan="6">
+                            <tr id="{{i}}" class="panel-collapse collapse in">
+                                <td colspan="6" class="panel-body text-muted">
                                     Answer: {{quiz.answer}}<br>
                                     Correct answer: {{quiz.correct_answer}}
                                 </td>

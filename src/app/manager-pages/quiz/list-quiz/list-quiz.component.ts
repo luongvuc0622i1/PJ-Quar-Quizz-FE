@@ -44,7 +44,7 @@ export class ListQuizComponent implements OnInit {
         });
     }
 
-    deleteQuiz(id: number) {
+    deleteQuiz(id) {
         Swal.fire({
             title: 'Delete quiz',
             text: "Are you sure to delete this quiz?",
@@ -57,21 +57,24 @@ export class ListQuizComponent implements OnInit {
             if (result.isConfirmed) {
                 this.quizService.delete(id).subscribe(() => {
                     this.router.navigate(['/manager/quizzes']);
-                    Swal.fire(
-                        'Done!',
-                        ' ',
-                        'success'
-                    );
-                    // location.reload();
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Quiz deleted!',
+                        showConfirmButton: true
+                    }).
+                    then(() => {
+                        location.reload()
+                    })
                 }, e => {
                     console.log(e);
                     Swal.fire({
                         icon: 'error',
-                        title: 'Oops...',
-                        text: 'Action wrong!'
+                        title: 'Delete fail!',
+                        text: 'If the quiz is already on a test, it can not be deleted.'
                     })
                 });
             }
         })
     }
+
 }
