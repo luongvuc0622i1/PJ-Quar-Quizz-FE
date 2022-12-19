@@ -20,11 +20,13 @@ export class LogoutService {
       confirmButtonText: 'Yes, Logout!'
     }).then((result) => {
       if (result.isConfirmed) {
-        Swal.fire(
-            'Log Out',
-            'Go to Home Page!',
-            'success'
-        )
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Logout Success!',
+          showConfirmButton: false,
+          timer: 2000
+        })
         localStorage.clear();
         this.router.navigate(['account']).then(()=>{
           location.reload()
