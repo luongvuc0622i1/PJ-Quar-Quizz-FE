@@ -17,31 +17,43 @@
                             <!--                            USERNAME-->
                             <mat-form-field appearance="fill" style="width: 250px">
                                 <mat-label>Username</mat-label>
-                                <input [(ngModel)]="form.username" name="username" #username="ngModel" matInput placeholder="YourUsername" required minlength="6">
-                                <mat-icon color="primary" matSuffix>account_box</mat-icon>
+                                <input [(ngModel)]="form.username" name="username" #username="ngModel" matInput
+                                       placeholder="YourUsername" required minlength="6">
+                                <mat-icon matSuffix color="primary">account_box</mat-icon>
                                 <mat-error *ngIf="username.hasError('required')">Username is required!</mat-error>
-
                             </mat-form-field>
                             <!--                            EMAIL-->
                             <mat-form-field appearance="fill" style="width: 250px">
                                 <mat-label>Email</mat-label>
-                                <input [formControl]="mailFormControl" name="email"  matInput placeholder="YourEmail" [(ngModel)]="form.email" required >
+                                <input [formControl]="mailFormControl" name="email" matInput placeholder="YourEmail"
+                                       [(ngModel)]="form.email" required>
                                 <mat-icon color="primary" matSuffix>alternate_email</mat-icon>
-                                <mat-error *ngIf="mailFormControl.hasError('required')">Mail is required!</mat-error>
-                                <mat-error *ngIf="mailFormControl.hasError('email')">Email is invalid! Ex: ye@gmail.com</mat-error>
+                                <mat-error *ngIf="mailFormControl.hasError('required')">Mail is required!
+                                </mat-error>
+                                <mat-error *ngIf="mailFormControl.hasError('email')">Email is invalid! Ex:
+                                    ye@gmail.com
+                                </mat-error>
                             </mat-form-field>
 
                             <!--                            PASSWORD-->
                             <div class="password-container">
                                 <mat-form-field appearance="fill" style="width: 250px">
                                     <mat-label>Password</mat-label>
-                                    <input [(ngModel)]="form.password" #password=ngModel name="password" matInput [type]="hide ? 'password' : 'text'" required minlength="6" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$">
-                                    <button color="primary" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-                                        <mat-icon color="primary">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-                                    </button>
-                                    <mat-error *ngIf="password.hasError('required')">Password is required!</mat-error>
-                                    <mat-error *ngIf="password.hasError('minlength')">Password must have at least 8 characters</mat-error>
-                                    <mat-error *ngIf="password.hasError('pattern')">First letter should be capitalized</mat-error>
+                                    <input [(ngModel)]="form.password" #password=ngModel name="password" matInput
+                                           [type]="hide ? 'password' : 'text'" required minlength="6"
+                                           pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$">
+                                    <mat-icon
+                                            color="primary" matSuffix (click)="hide = !hide"
+                                            [attr.aria-label]="'Hide password'"
+                                            [attr.aria-pressed]="hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                                    <mat-error *ngIf="password.hasError('required')">Password is required!
+                                    </mat-error>
+                                    <mat-error *ngIf="password.hasError('minlength')">Password must have at least 8
+                                        characters
+                                    </mat-error>
+                                    <mat-error *ngIf="password.hasError('pattern')">First letter should be
+                                        capitalized
+                                    </mat-error>
                                 </mat-form-field>
                             </div>
 
@@ -57,7 +69,6 @@
 
                             <!--                                </mat-form-field>-->
                             <!--                            </div>-->
-
 
 
                         </div>
@@ -78,7 +89,8 @@
                         <!--                        USERNAME-->
                         <mat-form-field appearance="fill" style="width: 250px">
                             <mat-label>Username</mat-label>
-                            <input [(ngModel)]="form.username" name="username" #username="ngModel" matInput placeholder="YourUsername" required minlength="6">
+                            <input [(ngModel)]="form.username" name="username" #username="ngModel" matInput
+                                   placeholder="YourUsername" required minlength="6">
                             <mat-icon color="primary" matSuffix>account_box</mat-icon>
                             <mat-error *ngIf="username.hasError('required')">Username is required!</mat-error>
 
@@ -88,13 +100,18 @@
                         <div class="password-container">
                             <mat-form-field appearance="fill" style="width: 250px">
                                 <mat-label>Password</mat-label>
-                                <input [(ngModel)]="form.password" #password=ngModel name="password" matInput [type]="hide ? 'password' : 'text'" required minlength="6" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$">
-                                <button color="primary" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-                                    <mat-icon color="primary">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-                                </button>
+                                <input [(ngModel)]="form.password" #password=ngModel name="password" matInput
+                                       [type]="hide ? 'password' : 'text'" required minlength="6"
+                                       pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$">
+                                <mat-icon color="primary" matSuffix (click)="hide = !hide"
+                                          [attr.aria-label]="'Hide password'"
+                                          [attr.aria-pressed]="hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                                 <mat-error *ngIf="password.hasError('required')">Password is required!</mat-error>
-                                <mat-error *ngIf="password.hasError('minlength')">Password must have at least 8 characters</mat-error>
-                                <mat-error *ngIf="password.hasError('pattern')">Incorrect password format</mat-error>
+                                <mat-error *ngIf="password.hasError('minlength')">Password must have at least 8
+                                    characters
+                                </mat-error>
+                                <mat-error *ngIf="password.hasError('pattern')">Incorrect password format
+                                </mat-error>
                             </mat-form-field>
                         </div>
 
@@ -107,12 +124,12 @@
                         <div class="overlay-panel overlay-left">
                             <h1>Welcome Back!</h1>
                             <p>To keep connected with us please login with your personal info</p>
-                            <button class="ghost" id="signIn" >Sign In</button>
+                            <button class="ghost" id="signIn">Sign In</button>
                         </div>
                         <div class="overlay-panel overlay-right">
                             <h1>Hello, Friend!</h1>
                             <p>Enter your personal details and start journey with us</p>
-                            <button class="ghost" id="signUp" >Sign Up</button>
+                            <button class="ghost" id="signUp">Sign Up</button>
                         </div>
                     </div>
                 </div>
@@ -120,3 +137,4 @@
         </div>
     </div>
 </div>
+
