@@ -3,6 +3,7 @@ import {ExamService} from "../../../service/exam/exam.service";
 import {ActivatedRoute, ParamMap} from "@angular/router";
 import {ExamTest} from "../../../model/exam-test";
 import {MatPaginator} from "@angular/material/paginator";
+import {ExamQuiz} from "../../../model/exam-quiz";
 
 @Component({
   selector: 'app-result-detail',
@@ -12,6 +13,7 @@ import {MatPaginator} from "@angular/material/paginator";
 export class ResultDetailComponent implements OnInit {
     examTest: ExamTest;
     id: number;
+    boolean: boolean;
     @ViewChild(MatPaginator) paginator: MatPaginator;
 
     constructor(private examTestService : ExamService,
@@ -40,7 +42,35 @@ export class ResultDetailComponent implements OnInit {
         });
         // @ts-ignore
         $("#myTable tr").paginator = this.paginator;
+        this.checkStatus(this.examTest.examQuizzes);
     };
+
+    checkStatus(examQuizzes: ExamQuiz[]) {
+        for (let i = 0; i < examQuizzes.length; i++) {
+            const a = examQuizzes[i].answerUser.split(';'); //day la dap an nguoi dung
+            const b = examQuizzes[i].quiz.correct_answer.split(';'); //day la correct answer
+            let isEqual = true;
+            if (a.length == b.length) {
+                for (let i=0; i < a.length; i++) {
+                    let equal = false;
+                    for (let j = 0; j < b.length; j++) {
+                        if(a[i] == b[j]) {
+                            equal = true;
+                            break;
+                        }
+                    }
+                    isEqual &&= equal;
+                }
+            } else {
+                isEqual = false;
+            }
+            if (isEqual) {
+                this.examTest.examQuizzes[i].status = 1;
+            } else {
+                this.examTest.examQuizzes[i].status = 0;
+            }
+        }
+    }
 
     back() {
         history.back();

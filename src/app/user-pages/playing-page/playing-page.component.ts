@@ -141,12 +141,9 @@ export class PlayingPageComponent implements OnInit {
     console.log(arr);
     let count = 0;
     for (let i = 0; i < arr.length; i++) {
-      console.log(arr[i]);
       //Kiem tra cau tra loi
       const a = arr[i].answerUser.split(';'); //day la dap an nguoi dung
       const b = arr[i].quiz.correct_answer.split(';'); //day la correct answer
-      console.log(a);
-      console.log(b);
       let isEqual = true;
       if (a.length == b.length) {
         for (let i=0; i < a.length; i++) {
