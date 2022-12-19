@@ -22,6 +22,8 @@
                                 <th>ID <i class="fa fa-sort"></i></th>
                                 <th>Name <i class="fa fa-sort"></i></th>
                                 <th>Username <i class="fa fa-sort"></i></th>
+                                <th *ngIf="roles[7] == 1" style="width: 85px; text-align: right">Role <i class="fa fa-sort"></i></th>
+                                <td *ngIf="roles[7] == 1"></td>
                                 <th>Email <i class="fa fa-sort"></i></th>
                                 <th>Status</th>
                                 <th *ngIf="roles[7] == 2">Actions</th>
@@ -32,6 +34,9 @@
                                 <td>{{i + 1}}</td>
                                 <td>{{user.name}}</td>
                                 <td>{{user.username}}</td>
+                                <td *ngIf="roles[7] == 1" style="text-align: right">{{user.roles[0].name}}</td>
+                                <td *ngIf="roles[7] == 1 && user.roles[0].id == 2"><mat-icon (click)="managerToUser(user)">autorenew</mat-icon></td>
+                                <td *ngIf="roles[7] == 1 && user.roles[0].id == 3"><mat-icon (click)="userToManager(user)">autorenew</mat-icon></td>
                                 <td>{{user.email}}</td>
                                 <td *ngIf="user.status==1"><mat-icon (click)="lock(user.id)">lock_open</mat-icon></td>
                                 <td *ngIf="user.status==0"><mat-icon (click)="open(user.id)" color="warn">lock</mat-icon></td>

@@ -83,4 +83,12 @@ export class ListUserComponent implements OnInit, AfterViewInit {
       })
     });
   }
+
+  managerToUser(user: User) {
+    alert(user.username + user.password + " toUser");
+  }
+
+  userToManager(user: User) {
+    alert(user.username + user.password + " toManger");
+  }
 }

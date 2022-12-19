@@ -25,6 +25,7 @@ export class PlayingPageComponent implements OnInit {
   examQuizzesDoneCheck: [];
   numOfTA: number;
   arrCheck: ExamQuiz[] = [];
+  quiz_id_now: number;
 
   //step
   currentTab = 0; // Current tab is set to be the first tab (0)
@@ -88,9 +89,10 @@ export class PlayingPageComponent implements OnInit {
     this.id_quiz = id;
   }
 
-  click(value: number) {
+  click(value: number, quiz_id: number) {
     this.answerUserAr.push(value);
     this.answerUser = this.answerUserAr.join(';');
+    this.quiz_id_now = quiz_id;
     this.id_user = Number(localStorage.getItem('ID_KEY'));
     this.examQuiz = {
       "quiz":
@@ -111,6 +113,7 @@ export class PlayingPageComponent implements OnInit {
     this.examService.saveQuiz(this.examQuiz).subscribe(examQuizDB => {
       this.examService.findEQById(examQuizDB.id).subscribe(examQuiz => {
         this.examQuizAr.push(examQuiz);
+        document.getElementById(String(this.quiz_id_now)).click();
       });
     }, error => {
       console.log(error)

@@ -23,14 +23,16 @@
                     </div>
                     <div class="col-md-3">
                         <div class="form-group" style="text-align: center">
-                            <label>Max Time</label>
-                            <p>{{test.maxTime}}</p>
-                        </div>
-                    </div>
-                    <div class="col-md-3" style="text-align: center">
-                        <div class="form-group">
                             <label>Time Out</label>
                             <p id="demo">{{test.maxTime}}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group" style="text-align: center">
+                            <label>Check</label>
+                            <p>
+                                <input type="checkbox" *ngFor="let quiz of test.quizzes; index as id" id="{{id}}">
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -50,10 +52,10 @@
                             </div>
                             <div class="modal-body">
                                 <div class="quiz" id="quiz">
-                                    <label class="element-animation1 btn-lg btn-warning btn-block option"><input class="largerCheck" type="checkbox" name="q_answer" (click)="click(1)">  {{quiz.answer.split(";")[0]}}</label>
-                                    <label class="element-animation2 btn-lg btn-warning btn-block option"><input class="largerCheck" type="checkbox" name="q_answer" (click)="click(2)">  {{quiz.answer.split(";")[1]}}</label>
-                                    <label class="element-animation3 btn-lg btn-warning btn-block option"><input class="largerCheck" type="checkbox" name="q_answer" (click)="click(3)">  {{quiz.answer.split(";")[2]}}</label>
-                                    <label class="element-animation3 btn-lg btn-warning btn-block option"><input class="largerCheck" type="checkbox" name="q_answer" (click)="click(4)">  {{quiz.answer.split(";")[3]}}</label>
+                                    <label class="element-animation1 btn-lg btn-warning btn-block option"><input class="largerCheck" type="checkbox" name="q_answer" (click)="click(1, i)">  {{quiz.answer.split(";")[0]}}</label>
+                                    <label class="element-animation2 btn-lg btn-warning btn-block option"><input class="largerCheck" type="checkbox" name="q_answer" (click)="click(2, i)">  {{quiz.answer.split(";")[1]}}</label>
+                                    <label class="element-animation3 btn-lg btn-warning btn-block option"><input class="largerCheck" type="checkbox" name="q_answer" (click)="click(3, i)">  {{quiz.answer.split(";")[2]}}</label>
+                                    <label class="element-animation3 btn-lg btn-warning btn-block option"><input class="largerCheck" type="checkbox" name="q_answer" (click)="click(4, i)">  {{quiz.answer.split(";")[3]}}</label>
                                 </div>
                             </div>
                         </div>
