@@ -11,13 +11,16 @@ import Swal from "sweetalert2";
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
-  user : any;
-  password : any;
+  user: any;
+  password: any;
+  id: number;
+  firstName: string;
 
-  constructor(private userService: UserService, private router:Router) { }
+  constructor(private userService: UserService) { }
 
   ngOnInit(): void {
-    this.getAll();
+    this.id = Number(localStorage.getItem("ID_KEY"));
+    this.getUserById(this.id);
   }
 
   changePasswordForm: FormGroup = new FormGroup({
@@ -52,7 +55,7 @@ export class ProfileComponent implements OnInit {
           "oldPassword": test.curPass,
           "newPassword": test.newPass
         };
-        this.userService.update(test1).subscribe(() =>{
+        this.userService.update(this.id, test1).subscribe(() =>{
           Swal.fire(
               'Done!',
               ' ',
@@ -72,11 +75,12 @@ export class ProfileComponent implements OnInit {
     })
   }
 
-  getAll() {
-    this.userService.findById().subscribe(user => {
+  getUserById(id: number) {
+    this.userService.findById(id).subscribe(user => {
       this.user = user;
-      console.log(user);
       this.password = user.password;
+      // @ts-ignore
+      this.firstName = user.name.split(' ')[0].join(' ');
     });
   }
 
