@@ -28,9 +28,10 @@ export class LogoutService {
           timer: 2000
         })
         localStorage.clear();
-        this.router.navigate(['account']).then(()=>{
-          location.reload()
-        })
+        // this.router.navigate(['account']).then(()=>{
+        //   location.reload()
+        // })
+        this.router.navigate(['account']);
       }
     })
   }
