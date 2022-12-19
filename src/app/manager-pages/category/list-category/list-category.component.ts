@@ -45,8 +45,8 @@ export class ListCategoryComponent implements OnInit {
 
     deleteCategory(id: number) {
         Swal.fire({
-            title: 'Delete quiz',
-            text: "Are you sure to delete this quiz?",
+            title: 'Delete category',
+            text: "Are you sure to delete this category?",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
@@ -67,7 +67,7 @@ export class ListCategoryComponent implements OnInit {
                     Swal.fire({
                         icon: 'error',
                         title: 'Delete fail!',
-                        text: 'If the category has quizzes, it can not be deleted.'
+                        text: 'If the category has quizzes or test, it can not be deleted.'
                     })
                 });
             }
