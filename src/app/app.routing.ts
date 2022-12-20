@@ -8,10 +8,10 @@ import {LandingPageComponent} from "./landing-page/landing-page.component";
 import {AccountPageComponent} from "./account-page/account-page.component";
 import {AdminLayoutComponent} from "./layouts/admin-layout/admin-layout.component";
 import {PlayingPageComponent} from "./user-pages/playing-page/playing-page.component";
-import {ForgetPasswordComponent} from "./forget-password/forget-password.component";
 import {AdminGuard} from "./service/security/admin.guard";
 import {ManagerGuard} from "./service/security/manager.guard";
 import {UserGuard} from "./service/security/user.guard";
+import {ForgotPasswordComponent} from "./forgot-password/forgot-password.component";
 
 const routes: Routes = [
     {
@@ -23,8 +23,8 @@ const routes: Routes = [
         component: AccountPageComponent
     },
     {
-        path: 'forget-password',
-        component: ForgetPasswordComponent
+        path: 'forgot-password',
+        component: ForgotPasswordComponent
     },
     {
         path: 'user', canActivate: [UserGuard],

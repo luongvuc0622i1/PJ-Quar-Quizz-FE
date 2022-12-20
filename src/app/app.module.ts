@@ -19,7 +19,9 @@ import { AccountPageComponent } from './account-page/account-page.component';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import {SidebarAdminModule} from "./layouts/admin-layout/sidebar/sidebar-admin.module";
 import {SidebarManagerModule} from "./layouts/manager-layout/sidebar/sidebar-manager.module";
-import { ForgetPasswordComponent } from './forget-password/forget-password.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import {MatStepperModule} from "@angular/material/stepper";
+import {MatButtonModule} from "@angular/material/button";
 @NgModule({
     imports: [
         BrowserAnimationsModule,
@@ -36,6 +38,8 @@ import { ForgetPasswordComponent } from './forget-password/forget-password.compo
         MatPaginatorModule,
         SidebarManagerModule,
         SidebarAdminModule,
+        MatStepperModule,
+        MatButtonModule,
     ],
     declarations: [
         AppComponent,
@@ -44,7 +48,7 @@ import { ForgetPasswordComponent } from './forget-password/forget-password.compo
         UserLayoutComponent,
         ManagerLayoutComponent,
         AdminLayoutComponent,
-        ForgetPasswordComponent,
+        ForgotPasswordComponent,
     ],
     providers: [
         {
