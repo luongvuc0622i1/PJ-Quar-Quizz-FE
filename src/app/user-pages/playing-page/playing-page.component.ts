@@ -78,7 +78,6 @@ export class PlayingPageComponent implements OnInit {
   }
 
   nextPrev(n) {
-    this.quiz_id_now += 1;
     // This function will figure out which tab to display
     var x = document.getElementsByClassName("tab");
     // Exit the function if any field in the current tab is invalid:
@@ -91,6 +90,10 @@ export class PlayingPageComponent implements OnInit {
     this.currentTab = this.currentTab + n;
     // Otherwise, display the correct tab:
     this.showTab(this.currentTab);
+
+
+    this.send();
+    this.quiz_id_now += n;
   }
 
   send() {
@@ -98,7 +101,7 @@ export class PlayingPageComponent implements OnInit {
     let answerUserAr = [];
     let answerUser;
     let examQuiz;
-    let t = this.test.quizzes[this.quiz_id_now-1].answer
+    let t = this.test.quizzes[this.quiz_id_now].answer
         .filter(opt => opt.checked)
         .map(opt => opt);
     selected = t;
@@ -113,7 +116,7 @@ export class PlayingPageComponent implements OnInit {
       examQuiz = {
         "quiz":
             {
-              "id":(this.test.quizzes[this.quiz_id_now-1].id)
+              "id":(this.test.quizzes[this.quiz_id_now].id)
             },
         "test":
             {
@@ -124,6 +127,7 @@ export class PlayingPageComponent implements OnInit {
         appUser: {"id":this.id_user}
       }
     }
+    console.log(this.quiz_id_now)
     console.log(examQuiz)
     this.examService.saveQuiz(examQuiz).subscribe(examQuizDB => {
       this.examService.findEQById(examQuizDB.id).subscribe(examQuiz => {
