@@ -1,9 +1,29 @@
 <div class="main-content">
     <div class="container-fluid">
+        <div class="header text-center">
+            <br>
+            <br>
+            <br>
+            <br>
+            <h1 class="title" style="font-size: 3.2em;color: #626060">Which test do you take today?</h1>
+        </div>
+        <div id="cover">
+            <form method="get" action="">
+                <div class="tb">
+                    <div class="td"><input type="text" placeholder="Search for quizzes or tests" required></div>
+                    <div class="td" id="s-cover">
+                        <button type="submit" class="search-button">
+                            <div id="s-circle"></div>
+                            <span></span>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
         <section class="property-grid grid">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-4" *ngFor="let test of tests; index as i">
+                    <div class="col-lg-4" *ngFor="let test of tests; index as i">
                         <div class="card-body">
                             <h2 class="card-title">
                                 <span class="label label-warning" id="id">{{i + 1}}</span>  {{test.name}}
@@ -11,7 +31,8 @@
                             <p class="card-text">Level: {{test.level.name}}</p>
                             <p class="card-text">Number of quizzes: {{test.quizzes.length}}</p>
                             <p class="card-text">Max time: {{test.maxTime}}</p>
-                            <button [routerLink]="['/user/playing/',test.id]" class="btn btn-warning">Take this test!</button>
+                            <button [routerLink]="['/user/playing/',test.id]" class="btn btn-warning">Take this test!
+                            </button>
                         </div>
                     </div>
                 </div>
