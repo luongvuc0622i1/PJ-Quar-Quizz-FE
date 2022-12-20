@@ -39,7 +39,7 @@ export class ManagerGuard implements CanActivate {
             text: 'Can not Access!',
             footer: '<a href="">Why do I have this issue?</a>'
           })
-          this.router.navigate(['user']);
+          this.router.navigate(['user/home']);
         }
       }
       else {
