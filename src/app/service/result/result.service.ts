@@ -29,4 +29,12 @@ export class ResultService {
   open(id: number) {
     return this.http.post(`${API_URL}/admin/open/${id}`, id);
   }
+
+  changeToManager(user: User): Observable<User> {
+    return this.http.put<User>(`${API_URL}/admin/changeManager?name=${user.username}`, user);
+  }
+
+  changeToUser(user: User): Observable<User> {
+    return this.http.put<User>(`${API_URL}/admin/changeUser?name=${user.username}`, user);
+  }
 }

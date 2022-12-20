@@ -45,50 +45,138 @@ export class ListUserComponent implements OnInit, AfterViewInit {
   }
 
   lock(id: number) {
-    this.resultService.lock(id).subscribe(() => {
-      Swal.fire({
-        position: 'center',
-        icon: 'success',
-        title: 'Account has locked',
-        showConfirmButton: false,
-        timer: 1500
-      })
-    }, e => {
-      Swal.fire({
-        position: 'center',
-        icon: 'error',
-        title: 'Fail! You must be admin',
-        showConfirmButton: false,
-        timer: 1500
-      })
-    });
+    Swal.fire({
+      title: 'This account will be lock',
+      text: "Are you sure?",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Ok!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.resultService.lock(id).subscribe(() => {
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Account has locked',
+            showConfirmButton: false,
+            timer: 1500
+          }).then(() => {
+            location.reload()
+          })
+        }, e => {
+          Swal.fire({
+            position: 'center',
+            icon: 'error',
+            title: 'Fail! You must be admin',
+            showConfirmButton: false,
+            timer: 1500
+          })
+        });
+      }
+    })
   }
 
   open(id: number) {
-    this.resultService.open(id).subscribe(() => {
-      Swal.fire({
-        position: 'center',
-        icon: 'success',
-        title: 'Account has unlocked',
-        showConfirmButton: false,
-        timer: 1500
-      })
-    }, e => {
-      Swal.fire({
-        position: 'center',
-        icon: 'error',
-        title: 'Fail! You must be admin',
-        showConfirmButton: false,
-        timer: 1500
-      })
-    });
+    Swal.fire({
+      title: 'This account will be open',
+      text: "Are you sure?",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Ok!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.resultService.open(id).subscribe(() => {
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Account has unlocked',
+            showConfirmButton: false,
+            timer: 1500
+          }).then(() => {
+            location.reload()
+          })
+        }, e => {
+          Swal.fire({
+            position: 'center',
+            icon: 'error',
+            title: 'Fail! You must be admin',
+            showConfirmButton: false,
+            timer: 1500
+          })
+        });
+      }
+    })
   }
 
   managerToUser(user: User) {
-    alert(user.username + user.password + " toUser");
+    Swal.fire({
+      title: user.name + ' will change to user role',
+      text: "Are you sure?",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Ok!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.resultService.changeToUser(user).subscribe(() => {
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Account has been user role',
+            showConfirmButton: false,
+            timer: 1500
+          }).then(() => {
+            location.reload()
+          })
+        }, e => {
+          Swal.fire({
+            position: 'center',
+            icon: 'error',
+            title: 'Fail! You must be admin',
+            showConfirmButton: false,
+            timer: 1500
+          })
+        });
+      }
+    })
   }
 
   userToManager(user: User) {
-    alert(user.username + user.password + " toManger");
+    Swal.fire({
+      title: user.name + ' will change to manager role',
+      text: "Are you sure?",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Ok!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.resultService.changeToManager(user).subscribe(() => {
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Account has been manager role',
+            showConfirmButton: false,
+            timer: 1500
+          }).then(() => {
+            location.reload()
+          })
+        }, e => {
+          Swal.fire({
+            position: 'center',
+            icon: 'error',
+            title: 'Fail! You must be admin',
+            showConfirmButton: false,
+            timer: 1500
+          })
+        });
+      }
+    })
   }
 }
