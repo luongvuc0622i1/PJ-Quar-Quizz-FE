@@ -31,7 +31,7 @@
                         <div class="form-group" style="text-align: center">
                             <label>Check</label>
                             <p>
-                                <input type="checkbox" *ngFor="let quiz of test.quizzes; index as id" id="{{id}}">
+                                <input type="checkbox" *ngFor="let quiz of test.quizzes; index as id" id="{{id + 1}}">
                             </p>
                         </div>
                     </div>
@@ -44,7 +44,7 @@
                 <mat-icon id="prevBtn" (click)="nextPrev(-1)" style="left: 130px">arrow_back_ios_rounded</mat-icon>
             </div>
             <div class="col-md-8" style="height: 550px">
-                <form id="regForm" *ngFor="let quiz of test.quizzes; index as i" (click)="getQuizId(quiz.id)">
+                <form id="regForm" *ngFor="let quiz of test.quizzes; index as i">
                     <div class="modal-dialog widget-wrap tab" style="width: 780px; left: -29px">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -52,10 +52,10 @@
                             </div>
                             <div class="modal-body">
                                 <div class="quiz" id="quiz">
-                                    <label class="element-animation1 btn-lg btn-warning btn-block option"><input class="largerCheck" type="checkbox" name="q_answer" (click)="click(1, i)">  {{quiz.answer.split(";")[0]}}</label>
-                                    <label class="element-animation2 btn-lg btn-warning btn-block option"><input class="largerCheck" type="checkbox" name="q_answer" (click)="click(2, i)">  {{quiz.answer.split(";")[1]}}</label>
-                                    <label class="element-animation3 btn-lg btn-warning btn-block option"><input class="largerCheck" type="checkbox" name="q_answer" (click)="click(3, i)">  {{quiz.answer.split(";")[2]}}</label>
-                                    <label class="element-animation3 btn-lg btn-warning btn-block option"><input class="largerCheck" type="checkbox" name="q_answer" (click)="click(4, i)">  {{quiz.answer.split(";")[3]}}</label>
+                                    <label class="element-animation1 btn-lg btn-warning btn-block option"><input class="largerCheck" type="checkbox" [checked]="quiz.answer[0].checked" (change)="quiz.answer[0].checked = !quiz.answer[0].checked">  {{quiz.answer[0].name}}</label>
+                                    <label class="element-animation1 btn-lg btn-warning btn-block option"><input class="largerCheck" type="checkbox" [checked]="quiz.answer[1].checked" (change)="quiz.answer[1].checked = !quiz.answer[1].checked">  {{quiz.answer[1].name}}</label>
+                                    <label class="element-animation1 btn-lg btn-warning btn-block option"><input class="largerCheck" type="checkbox" [checked]="quiz.answer[2].checked" (change)="quiz.answer[2].checked = !quiz.answer[2].checked">  {{quiz.answer[2].name}}</label>
+                                    <label class="element-animation1 btn-lg btn-warning btn-block option"><input class="largerCheck" type="checkbox" [checked]="quiz.answer[3].checked" (change)="quiz.answer[3].checked = !quiz.answer[3].checked">  {{quiz.answer[3].name}}</label>
                                 </div>
                             </div>
                         </div>

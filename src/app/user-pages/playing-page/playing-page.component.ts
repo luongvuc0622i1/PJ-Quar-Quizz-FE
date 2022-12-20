@@ -14,18 +14,15 @@ import Swal from "sweetalert2";
 })
 export class PlayingPageComponent implements OnInit {
   test: Test;
-  answerUserAr: number[] = [];
-  answerUser: String = '';
   id: number; //id_test
   id_user: number;
-  id_quiz: number;
-  examQuiz: ExamQuiz;
+  id_quiz: number = 0;
   examQuizAr: ExamQuiz[] = [];
   examTest: ExamTest;
   examQuizzesDoneCheck: [];
   numOfTA: number;
   arrCheck: ExamQuiz[] = [];
-  quiz_id_now: number;
+  quiz_id_now: number = 0;
 
   //step
   currentTab = 0; // Current tab is set to be the first tab (0)
@@ -47,6 +44,16 @@ export class PlayingPageComponent implements OnInit {
   ngAfterViewInit() {
     this.showTab(0);
     this.setTimeOut();
+
+    for (let i = 0; i < this.test.quizzes.length; i++) {
+      let a = this.test.quizzes[i].answer.split(';');
+      let b = [];
+      for (let j = 0; j < a.length; j++) {
+        b.push({"name": a[j], "checked": false, "id": j});
+      }
+      this.test.quizzes[i].answer = b;
+    }
+    console.log(this.test.quizzes);
   }
 
   //step
@@ -71,6 +78,7 @@ export class PlayingPageComponent implements OnInit {
   }
 
   nextPrev(n) {
+    this.quiz_id_now += 1;
     // This function will figure out which tab to display
     var x = document.getElementsByClassName("tab");
     // Exit the function if any field in the current tab is invalid:
@@ -85,32 +93,39 @@ export class PlayingPageComponent implements OnInit {
     this.showTab(this.currentTab);
   }
 
-  getQuizId(id: number) {
-    this.id_quiz = id;
-  }
-
-  click(value: number, quiz_id: number) {
-    this.answerUserAr.push(value);
-    this.answerUser = this.answerUserAr.join(';');
-    this.quiz_id_now = quiz_id;
-    this.id_user = Number(localStorage.getItem('ID_KEY'));
-    this.examQuiz = {
-      "quiz":
-          {
-            "id":this.id_quiz
-          },
-      "test":
-          {
-            "id":this.id
-          },
-      "answerUser":this.answerUser,
-      // @ts-ignore
-      appUser: {"id":this.id_user}
-    }
-  }
-
   send() {
-    this.examService.saveQuiz(this.examQuiz).subscribe(examQuizDB => {
+    let selected;
+    let answerUserAr = [];
+    let answerUser;
+    let examQuiz;
+    let t = this.test.quizzes[this.quiz_id_now-1].answer
+        .filter(opt => opt.checked)
+        .map(opt => opt);
+    selected = t;
+
+    for (let i=0; i < selected.length; i++) {
+      answerUserAr.push(selected[i].id + 1);
+    }
+
+    answerUser = answerUserAr.join(';');
+    this.id_user = Number(localStorage.getItem('ID_KEY'));
+    if (answerUser) {
+      examQuiz = {
+        "quiz":
+            {
+              "id":(this.test.quizzes[this.quiz_id_now-1].id)
+            },
+        "test":
+            {
+              "id":this.id
+            },
+        "answerUser":answerUser,
+        // @ts-ignore
+        appUser: {"id":this.id_user}
+      }
+    }
+    console.log(examQuiz)
+    this.examService.saveQuiz(examQuiz).subscribe(examQuizDB => {
       this.examService.findEQById(examQuizDB.id).subscribe(examQuiz => {
         this.examQuizAr.push(examQuiz);
         document.getElementById(String(this.quiz_id_now)).click();
@@ -118,9 +133,6 @@ export class PlayingPageComponent implements OnInit {
     }, error => {
       console.log(error)
     });
-    this.answerUserAr = [];
-    this.answerUser = '';
-    this.examQuiz = null;
   }
 
   submitTest() {
