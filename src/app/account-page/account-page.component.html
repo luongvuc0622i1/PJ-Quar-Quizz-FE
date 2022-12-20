@@ -58,20 +58,25 @@
                             </div>
 
                             <!--                            CONFIRM PASSWORD-->
-                            <!--                            <div class="password-container">-->
-                            <!--                                <mat-form-field appearance="fill" style="width: 250px">-->
-                            <!--                                    <mat-label>Password</mat-label>-->
-                            <!--                                    <input [formControl]="confirmPasswordFormControl" name="confirmPassword" matInput [type]="hide ? 'confirmPassword' : 'text'" (ngModelChange)="comparePassword()">-->
-                            <!--                                    <button color="primary" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide" >-->
-                            <!--                                        <mat-icon color="primary">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>-->
-                            <!--                                        <mat-error *ngIf="confirmPassword?.error?.('confirmPassword')">Password not match!</mat-error>-->
-                            <!--                                    </button>-->
-
-                            <!--                                </mat-form-field>-->
-                            <!--                            </div>-->
+<!--                            <div class="password-container">-->
+<!--                                <mat-form-field appearance="fill" style="width: 250px">-->
+<!--                                    <mat-label>Confirm Password</mat-label>-->
+<!--                                    <input [(ngModel)]="form.confirmPassword" #confirmPassword=ngModel name="confirmPassword" matInput-->
+<!--                                           [type]="hide ? 'confirmPassword' : 'text'"-->
+<!--                                           matchValidator="password">-->
+<!--                                    <mat-icon-->
+<!--                                            color="primary" matSuffix (click)="hide = !hide"-->
+<!--                                            [attr.aria-label]="'Hide password'"-->
+<!--                                            [attr.aria-pressed]="hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>-->
+<!--                                    <mat-error *ngIf="confirmPassword.hasError('matchValidator')">-->
+<!--                                        Must be match with password!-->
+<!--                                    </mat-error>-->
+<!--                                </mat-form-field>-->
+<!--                            </div>-->
 
 
                         </div>
+                        <br>
                         <button id="singUp">Sign Up</button>
                     </form>
                 </div>
