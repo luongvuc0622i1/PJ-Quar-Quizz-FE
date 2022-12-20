@@ -4,7 +4,6 @@ import {BrowserModule} from '@angular/platform-browser';
 import {Routes, RouterModule} from '@angular/router';
 import {ManagerLayoutComponent} from "./layouts/manager-layout/manager-layout.component";
 import {UserLayoutComponent} from "./layouts/user-layout/user-layout.component";
-import {AuthGuard} from "./service/security/auth.guard";
 import {LandingPageComponent} from "./landing-page/landing-page.component";
 import {AccountPageComponent} from "./account-page/account-page.component";
 import {AdminLayoutComponent} from "./layouts/admin-layout/admin-layout.component";

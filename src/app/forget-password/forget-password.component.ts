@@ -37,7 +37,7 @@ export class ForgetPasswordComponent implements OnInit {
         swal("Sent OTP, Please check your email and enter the OTP code","","success")
         localStorage.setItem("email",this.email);
         this.message = '';
-        // this.router.navigate(["/confirm-otp"])
+        this.router.navigate(["/confirm-otp"]);
       }else{
         this.message="Wrong email, Please try again!"
       }
