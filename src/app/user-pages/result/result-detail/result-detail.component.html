@@ -23,8 +23,6 @@
                                 <th>ID <i class="fa fa-sort"></i></th>
                                 <th>Level <i class="fa fa-sort"></i></th>
                                 <th>Quiz <i class="fa fa-sort"></i></th>
-                                <th>User answer <i class="fa fa-sort"></i></th>
-                                <th>Correct answer <i class="fa fa-sort"></i></th>
                                 <th>Status <i class="fa fa-sort"></i></th>
                             </tr>
                             </thead>
@@ -33,10 +31,8 @@
                                 <td>{{i + 1}}</td>
                                 <td>{{examQuiz.quiz.level.name}}</td>
                                 <td>{{examQuiz.quiz.name}}</td>
-                                <td>{{examQuiz.answerUser}}</td>
-                                <td>{{examQuiz.quiz.correct_answer}}</td>
-                                <td *ngIf="examQuiz.status==1">True</td>
-                                <td *ngIf="examQuiz.status==0">False</td>
+                                <td *ngIf="examQuiz.status==1"><mat-icon style="color: green">check_circle_outline</mat-icon></td>
+                                <td *ngIf="examQuiz.status==0"><mat-icon color="warn">highlight_off</mat-icon></td>
                             </tr>
                             </tbody>
                         </table>
