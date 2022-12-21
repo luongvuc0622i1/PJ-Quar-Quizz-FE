@@ -21,8 +21,7 @@ export class ListQuizComponent implements OnInit {
         this.quizService.getAll().subscribe(quizList => {
             this.quizzes = quizList;
         });
-        // document.getElementById("clickk").click();
-        setTimeout(() => document.getElementById("clickk").click(), 100);
+        setTimeout(() => document.getElementById("clickk").click(), 500);
     }
 
     ngAfterViewInit() {
@@ -39,6 +38,7 @@ export class ListQuizComponent implements OnInit {
     };
 
     getValue(quiz: Quiz) {
+        console.log(quiz)
         this.answers = [];
         let a = quiz.answer.split(';');
         let b = quiz.correct_answer.split(';');
