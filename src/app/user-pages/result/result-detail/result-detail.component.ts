@@ -16,6 +16,7 @@ export class ResultDetailComponent implements OnInit {
     boolean: boolean;
     answerUser: string[] = [];
     correct_answer: string[] = [];
+    answers: any = [];
 
     constructor(private examTestService : ExamService,
                 private activatedRoute: ActivatedRoute) {
@@ -28,6 +29,7 @@ export class ResultDetailComponent implements OnInit {
         this.examTestService.findETById(this.id).subscribe(test => {
             this.examTest = test;
         });
+        // setTimeout(() => document.getElementById("clickk").click(), 100);
     }
 
     ngAfterViewInit() {
@@ -42,6 +44,24 @@ export class ResultDetailComponent implements OnInit {
             });
         });
         this.checkStatus(this.examTest.examQuizzes);
+        console.log(this.examTest);
+        let c = [];
+        for (let i = 0; i < this.examTest.examQuizzes.length; i++) {
+            let a = this.examTest.examQuizzes[i].quiz.answer.split(';');
+            let b = this.examTest.examQuizzes[i].quiz.correct_answer.split(';');
+            for (let i = 0; i < a.length; i++) {
+                // @ts-ignore
+                c.push({name: a[i], checked: false})
+            }
+            for (let i = 0; i < b.length; i++) {
+                // @ts-ignore
+                c[(b[i]-1)].checked = true;
+            }
+            // @ts-ignore
+            this.examTest.examQuizzes[i].quiz.answer = c;
+            c = [];
+        }
+        console.log(this.examTest.examQuizzes);
     };
 
     checkStatus(examQuizzes: ExamQuiz[]) {
@@ -71,16 +91,30 @@ export class ResultDetailComponent implements OnInit {
         }
     }
 
-    getValue(examQuiz: ExamQuiz) {
-        this.answerUser = [];
-        for (let i = 0; i < examQuiz.answerUser.split(';').length; i++) {
-            this.answerUser.push(examQuiz.quiz.answer.split(';')[i]);
-        }
-        this.correct_answer = [];
-        for (let i = 0; i < examQuiz.quiz.correct_answer.split(';').length; i++) {
-            this.correct_answer.push(examQuiz.quiz.answer.split(';')[i]);
-        }
-    }
+    // getValue(examQuiz: ExamQuiz) {
+    //     // this.answerUser = [];
+    //     // for (let i = 0; i < examQuiz.answerUser.split(';').length; i++) {
+    //     //     this.answerUser.push(examQuiz.quiz.answer.split(';')[i]);
+    //     // }
+    //     // this.correct_answer = [];
+    //     // for (let i = 0; i < examQuiz.quiz.correct_answer.split(';').length; i++) {
+    //     //     this.correct_answer.push(examQuiz.quiz.answer.split(';')[i]);
+    //     // }
+    //
+    //
+    //     this.answers = [];
+    //     let a = examQuiz.quiz.answer.split(';');
+    //     let b = examQuiz.quiz.correct_answer.split(';');
+    //     for (let i = 0; i < a.length; i++) {
+    //         // @ts-ignore
+    //         this.answers.push({name: a[i], checked: false})
+    //     }
+    //     for (let i = 0; i < b.length; i++) {
+    //         // @ts-ignore
+    //         this.answers[b[i]-1].checked = true;
+    //     }
+    //     console.log(this.answers);
+    // }
 
     back() {
         history.back();

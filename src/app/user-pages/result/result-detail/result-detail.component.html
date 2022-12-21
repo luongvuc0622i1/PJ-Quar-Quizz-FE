@@ -32,20 +32,26 @@
                                 <td>{{examQuiz.quiz.level.name}}</td>
                                 <td>{{examQuiz.quiz.name}}</td>
                                 <td *ngIf="examQuiz.status==1">
-                                    <a class="view" title="See detail" data-toggle="collapse" data-parent="#accordion" href="#{{i}}" (click)="getValue(examQuiz)">
+                                    <a class="view" title="See detail" data-toggle="collapse" data-parent="#accordion" href="#{{i}}">
                                         <mat-icon style="color: green">check_circle_outline</mat-icon>
                                     </a>
                                 </td>
                                 <td *ngIf="examQuiz.status==0">
-                                    <a class="view" title="See detail" data-toggle="collapse" data-parent="#accordion" href="#{{i}}" (click)="getValue(examQuiz)">
+                                    <a class="view" title="See detail" data-toggle="collapse" data-parent="#accordion" href="#{{i}}">
                                         <mat-icon color="warn">highlight_off</mat-icon>
                                     </a>
                                 </td>
                             </tr>
                             <tr id="{{i}}" class="panel-collapse collapse">
-                                <td colspan="6" class="panel-body text-muted" >
-                                    <p *ngFor="let aU of answerUser" style="color: #1F77D0">{{aU}}</p>
-                                    <p *ngFor="let cA of correct_answer" style="color: #ac2925">{{cA}}</p>
+                                <td colspan="6" class="panel-body text-muted">
+                                    <p *ngIf="examQuiz.quiz.answer[0].checked == false">A. {{examQuiz.quiz.answer[0].name}}</p>
+                                    <p *ngIf="examQuiz.quiz.answer[0].checked == true" style="color: green">A. {{examQuiz.quiz.answer[0].name}}</p>
+                                    <p *ngIf="examQuiz.quiz.answer[1].checked == false">B. {{examQuiz.quiz.answer[1].name}}</p>
+                                    <p *ngIf="examQuiz.quiz.answer[1].checked == true" style="color: green">B. {{examQuiz.quiz.answer[1].name}}</p>
+                                    <p *ngIf="examQuiz.quiz.answer[2].checked == false">C. {{examQuiz.quiz.answer[2].name}}</p>
+                                    <p *ngIf="examQuiz.quiz.answer[2].checked == true" style="color: green">C. {{examQuiz.quiz.answer[2].name}}</p>
+                                    <p *ngIf="examQuiz.quiz.answer[3].checked == false">D. {{examQuiz.quiz.answer[3].name}}</p>
+                                    <p *ngIf="examQuiz.quiz.answer[3].checked == true" style="color: green">D. {{examQuiz.quiz.answer[3].name}}</p>
                                 </td>
                             </tr>
                             </tbody>
