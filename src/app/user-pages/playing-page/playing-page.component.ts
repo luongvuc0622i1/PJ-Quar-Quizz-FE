@@ -213,12 +213,14 @@ export class PlayingPageComponent implements OnInit {
     console.log("end")
     console.log(this.examTest)
     this.examService.saveTest(this.examTest).subscribe(() =>{
-      Swal.fire(
-          'Done!',
-          ' ',
-          'success'
-      )
-      this.router.navigate(['/user/home']);
+      Swal.fire({
+        icon: 'success',
+        title: 'Done!',
+        showConfirmButton: false,
+        timer: 1500
+          }
+      ).then(()=>
+      this.router.navigate(['/user/home']));
     }, error => {
       console.log('chua nop dc bai!');
     });

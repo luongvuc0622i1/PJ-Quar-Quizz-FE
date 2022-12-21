@@ -9,30 +9,22 @@
                     <button (click)="submitDone()" id="submit" style="background: inherit"></button>
                 </div>
                 <div class="modal-body">
-                    <div class="col-md-3">
+                    <div class="col-md-4">
                         <div class="form-group" style="text-align: center">
                             <label>Level</label>
                             <p>{{test.level.name}}</p>
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-4">
                         <div class="form-group" style="text-align: center">
                             <label>Number Of Quizzes</label>
                             <p>{{test.quizzes.length}}</p>
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-4">
                         <div class="form-group" style="text-align: center">
                             <label>Time Out</label>
                             <p id="demo">{{test.maxTime}}</p>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="form-group" style="text-align: center">
-                            <label>Check</label>
-                            <p>
-                                <input type="checkbox" *ngFor="let quiz of test.quizzes; index as id" id="{{id + 1}}">
-                            </p>
                         </div>
                     </div>
                 </div>
