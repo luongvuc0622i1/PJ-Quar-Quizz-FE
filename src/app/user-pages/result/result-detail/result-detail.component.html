@@ -20,19 +20,33 @@
                         <table class="table table-hover table-striped">
                             <thead>
                             <tr>
-                                <th>ID <i class="fa fa-sort"></i></th>
-                                <th>Level <i class="fa fa-sort"></i></th>
-                                <th>Quiz <i class="fa fa-sort"></i></th>
-                                <th>Status <i class="fa fa-sort"></i></th>
+                                <th>ID</th>
+                                <th>Level</th>
+                                <th>Quiz</th>
+                                <th>Result</th>
                             </tr>
                             </thead>
-                            <tbody id="myTable">
-                            <tr *ngFor="let examQuiz of examTest.examQuizzes; index as i">
+                            <tbody *ngFor="let examQuiz of examTest.examQuizzes; index as i" id="myTable">
+                            <tr>
                                 <td>{{i + 1}}</td>
                                 <td>{{examQuiz.quiz.level.name}}</td>
                                 <td>{{examQuiz.quiz.name}}</td>
-                                <td *ngIf="examQuiz.status==1"><mat-icon style="color: green">check_circle_outline</mat-icon></td>
-                                <td *ngIf="examQuiz.status==0"><mat-icon color="warn">highlight_off</mat-icon></td>
+                                <td *ngIf="examQuiz.status==1">
+                                    <a class="view" title="See detail" data-toggle="collapse" data-parent="#accordion" href="#{{i}}" (click)="getValue(examQuiz)">
+                                        <mat-icon style="color: green">check_circle_outline</mat-icon>
+                                    </a>
+                                </td>
+                                <td *ngIf="examQuiz.status==0">
+                                    <a class="view" title="See detail" data-toggle="collapse" data-parent="#accordion" href="#{{i}}" (click)="getValue(examQuiz)">
+                                        <mat-icon color="warn">highlight_off</mat-icon>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr id="{{i}}" class="panel-collapse collapse">
+                                <td colspan="6" class="panel-body text-muted" >
+                                    <p *ngFor="let aU of answerUser" style="color: #1F77D0">{{aU}}</p>
+                                    <p *ngFor="let cA of correct_answer" style="color: #ac2925">{{cA}}</p>
+                                </td>
                             </tr>
                             </tbody>
                         </table>

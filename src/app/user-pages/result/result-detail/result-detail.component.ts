@@ -3,6 +3,7 @@ import {ExamService} from "../../../service/exam/exam.service";
 import {ActivatedRoute, ParamMap} from "@angular/router";
 import {ExamTest} from "../../../model/exam-test";
 import {ExamQuiz} from "../../../model/exam-quiz";
+import {Quiz} from "../../../model/quiz";
 
 @Component({
   selector: 'app-result-detail',
@@ -13,6 +14,8 @@ export class ResultDetailComponent implements OnInit {
     examTest: ExamTest;
     id: number;
     boolean: boolean;
+    answerUser: string[] = [];
+    correct_answer: string[] = [];
 
     constructor(private examTestService : ExamService,
                 private activatedRoute: ActivatedRoute) {
@@ -65,6 +68,17 @@ export class ResultDetailComponent implements OnInit {
             } else {
                 this.examTest.examQuizzes[i].status = 0;
             }
+        }
+    }
+
+    getValue(examQuiz: ExamQuiz) {
+        this.answerUser = [];
+        for (let i = 0; i < examQuiz.answerUser.split(';').length; i++) {
+            this.answerUser.push(examQuiz.quiz.answer.split(';')[i]);
+        }
+        this.correct_answer = [];
+        for (let i = 0; i < examQuiz.quiz.correct_answer.split(';').length; i++) {
+            this.correct_answer.push(examQuiz.quiz.answer.split(';')[i]);
         }
     }
 

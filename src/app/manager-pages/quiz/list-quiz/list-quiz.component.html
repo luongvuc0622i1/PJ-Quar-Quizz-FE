@@ -22,11 +22,11 @@
                         <table class="table table-striped table-hover">
                             <thead>
                             <tr>
-                                <th class="col-md-1">ID <i class="fa fa-sort"></i></th>
-                                <th class="col-md-6">Quiz <i class="fa fa-sort"></i></th>
-                                <th class="col-md-2">Quiz Type <i class="fa fa-sort"></i></th>
-                                <th class="col-md-1">Level <i class="fa fa-sort"></i></th>
-                                <th class="col-md-2">Actions</th>
+                                <th class="col-md-1">ID</th>
+                                <th class="col-md-6">Name</th>
+                                <th class="col-md-2">Quiz Type</th>
+                                <th class="col-md-1">Level</th>
+                                <th class="col-md-2" style="text-align: center">Actions</th>
                             </tr>
                             </thead>
                             <tbody *ngFor="let quiz of quizzes; index as i" id="myTable">
@@ -35,8 +35,8 @@
                                 <td>{{quiz.name}}</td>
                                 <td>{{quiz.typeQuizzes.name}}</td>
                                 <td>{{quiz.level.name}}</td>
-                                <td>
-                                    <a class="view" title="View" data-toggle="collapse" data-parent="#accordion" href="#{{i}}">
+                                <td style="text-align: center">
+                                    <a class="view" title="View" data-toggle="collapse" data-parent="#accordion" href="#{{i}}" (click)="getValue(quiz)" id="clickk">
                                         <i class="material-icons">&#xE417;</i>
                                         <p class="hidden-lg hidden-md">View</p>
                                     </a>
@@ -53,9 +53,15 @@
                                 </td>
                             </tr>
                             <tr id="{{i}}" class="panel-collapse collapse">
-                                <td colspan="6" class="panel-body text-muted" >
-                                    Answer: {{quiz.answer}}<br>
-                                    Correct answer: {{quiz.correct_answer}}
+                                <td colspan="6" class="panel-body text-muted">
+                                    <p *ngIf="answers[0].checked == false">A. {{answers[0].name}}</p>
+                                    <p *ngIf="answers[0].checked == true" style="color: green">A. {{answers[0].name}}</p>
+                                    <p *ngIf="answers[1].checked == false">B. {{answers[1].name}}</p>
+                                    <p *ngIf="answers[1].checked == true" style="color: green">B. {{answers[1].name}}</p>
+                                    <p *ngIf="answers[2].checked == false">C. {{answers[2].name}}</p>
+                                    <p *ngIf="answers[2].checked == true" style="color: green">C. {{answers[2].name}}</p>
+                                    <p *ngIf="answers[3].checked == false">D. {{answers[3].name}}</p>
+                                    <p *ngIf="answers[3].checked == true" style="color: green">D. {{answers[3].name}}</p>
                                 </td>
                             </tr>
                             </tbody>

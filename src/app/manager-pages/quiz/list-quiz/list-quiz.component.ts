@@ -1,8 +1,7 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {QuizService} from "../../../service/quiz/quiz.service";
 import Swal from "sweetalert2";
 import {Router} from "@angular/router";
-import {MatPaginator} from "@angular/material/paginator";
 import {Quiz} from "../../../model/quiz";
 
 
@@ -13,12 +12,17 @@ import {Quiz} from "../../../model/quiz";
 })
 export class ListQuizComponent implements OnInit {
     quizzes: Quiz[] = [];
+    answers: any = [];
 
     constructor(private quizService: QuizService,
                 private router: Router) {}
 
     ngOnInit(): void {
-        this.getAll();
+        this.quizService.getAll().subscribe(quizList => {
+            this.quizzes = quizList;
+        });
+        // document.getElementById("clickk").click();
+        setTimeout(() => document.getElementById("clickk").click(), 100);
     }
 
     ngAfterViewInit() {
@@ -34,11 +38,19 @@ export class ListQuizComponent implements OnInit {
         });
     };
 
-
-    getAll() {
-        this.quizService.getAll().subscribe(quizList => {
-            this.quizzes = quizList;
-        });
+    getValue(quiz: Quiz) {
+        this.answers = [];
+        let a = quiz.answer.split(';');
+        let b = quiz.correct_answer.split(';');
+        for (let i = 0; i < a.length; i++) {
+            // @ts-ignore
+            this.answers.push({name: a[i], checked: false})
+        }
+        for (let i = 0; i < b.length; i++) {
+            // @ts-ignore
+            this.answers[b[i]-1].checked = true;
+        }
+        console.log(this.answers);
     }
 
     deleteQuiz(id) {
@@ -73,5 +85,4 @@ export class ListQuizComponent implements OnInit {
             }
         })
     }
-
 }
