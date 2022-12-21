@@ -140,10 +140,12 @@ export class PlayingPageComponent implements OnInit {
   }
 
   submitTest() {
-    this.checkAr(this.examQuizAr);
+    // this.checkAr(this.examQuizAr);
     Swal.fire({
       title: 'Are you sure?',
-      text: this.examQuizzesDoneCheck.length + " / " + this.test.quizzes.length + " done!",
+      text:
+          // this.examQuizzesDoneCheck.length + " / " + this.test.quizzes.length +
+          " done!",
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
@@ -195,6 +197,8 @@ export class PlayingPageComponent implements OnInit {
       appUser: {"id":this.id_user},
       "numOfTA": this.numOfTA
     }
+    console.log("end")
+    console.log(this.examTest)
     this.examService.saveTest(this.examTest).subscribe(() =>{
       Swal.fire(
           'Done!',
@@ -208,9 +212,11 @@ export class PlayingPageComponent implements OnInit {
   }
 
   checkAr(examQuizzes: ExamQuiz[]) {
+    console.log(examQuizzes);
     this.examQuizzesDoneCheck = [];
     this.arrCheck = [];
-    let examQuizzesRV = examQuizzes.reverse();
+    let examQuizzesRV = examQuizzes.sort().reverse();
+    console.log(examQuizzesRV)
     let arrC = [];
     let arrCid = [];
     let arrD = [];
