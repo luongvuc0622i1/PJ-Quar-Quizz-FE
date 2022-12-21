@@ -13,7 +13,6 @@ import {Quiz} from "../../../model/quiz";
 })
 export class ListQuizComponent implements OnInit {
     quizzes: Quiz[] = [];
-    @ViewChild(MatPaginator) paginator: MatPaginator;
 
     constructor(private quizService: QuizService,
                 private router: Router) {}
@@ -33,8 +32,6 @@ export class ListQuizComponent implements OnInit {
                 });
             });
         });
-        // @ts-ignore
-        $("#myTable tr").paginator = this.paginator;
     };
 
 

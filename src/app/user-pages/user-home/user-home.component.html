@@ -10,7 +10,7 @@
         <div id="cover">
             <form method="get" action="">
                 <div class="tb">
-                    <div class="td"><input type="text" placeholder="Search for quizzes or tests" required></div>
+                    <div class="td"><input id="myInput" type="text" placeholder="Search for quizzes or tests" required></div>
                     <div class="td" id="s-cover">
                         <button type="submit" class="search-button">
                             <div id="s-circle"></div>
@@ -20,10 +20,17 @@
                 </div>
             </form>
         </div>
+            <div class="icon-bar">
+                <a><i class="fa fa-gamepad text-primary" aria-hidden="true"></i></a>
+                <a><i class="fa fa-puzzle-piece text-danger" aria-hidden="true"></i></a>
+                <a><i class="fa fa-question-circle text-success" aria-hidden="true"></i></a>
+                <a><i class="fa fa-binoculars text-info" aria-hidden="true"></i></a>
+                <a><i class="fa fa-trophy text-warning" aria-hidden="true"></i></a>
+            </div>
         <section class="property-grid grid">
             <div class="container">
-                <div class="row">
-                    <div class="col-lg-4" *ngFor="let test of tests; index as i">
+                <div class="row" id="myDIV">
+                    <div class="col-lg-4"*ngFor="let test of tests; index as i">
                         <div class="card-body">
                             <h2 class="card-title">
                                 <span class="label label-warning" id="id">{{i + 1}}</span>  {{test.name}}

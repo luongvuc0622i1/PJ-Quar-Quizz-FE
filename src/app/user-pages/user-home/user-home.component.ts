@@ -22,4 +22,17 @@ export class UserHomeComponent implements OnInit {
       this.tests = testList;
     });
   }
+
+  ngAfterViewInit() {
+    $(document).ready(function(){
+      $("#myInput").on("keyup", function() {
+        // @ts-ignore
+        var value = $(this).val().toLowerCase();
+        // @ts-ignore
+        $("#myDIV > div").filter(function() {
+          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+      });
+    });
+  };
 }
