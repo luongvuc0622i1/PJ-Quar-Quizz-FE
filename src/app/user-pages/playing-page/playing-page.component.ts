@@ -46,6 +46,7 @@ export class PlayingPageComponent implements OnInit {
     this.setTimeOut();
 
     for (let i = 0; i < this.test.quizzes.length; i++) {
+      Object.assign(this.test.quizzes[i], {checked: false});
       let a = this.test.quizzes[i].answer.split(';');
       let b = [];
       for (let j = 0; j < a.length; j++) {
@@ -53,8 +54,19 @@ export class PlayingPageComponent implements OnInit {
       }
       this.test.quizzes[i].answer = b;
     }
-    console.log(this.test.quizzes);
   }
+
+  getQuizId(id: number) {
+    this.quiz_id_now = id;
+  }
+
+  // ngAfterViewChecked() {
+  //     if (this.test.quizzes[this.quiz_id_now].answer.checked) {
+  //       this.test.quizzes[this.quiz_id_now].checked = true;
+  //     } else {
+  //       this.test.quizzes[this.quiz_id_now].checked = false;
+  //     }
+  // }
 
   //step
   showTab(n) {
@@ -93,7 +105,7 @@ export class PlayingPageComponent implements OnInit {
 
 
     this.send();
-    this.quiz_id_now += n;
+    // this.quiz_id_now += n;
   }
 
   send() {
@@ -130,11 +142,12 @@ export class PlayingPageComponent implements OnInit {
     console.log(this.quiz_id_now)
     console.log(examQuiz)
     this.examService.saveQuiz(examQuiz).subscribe(examQuizDB => {
+      this.test.quizzes[this.quiz_id_now].checked = true;
       this.examService.findEQById(examQuizDB.id).subscribe(examQuiz => {
         this.examQuizAr.push(examQuiz);
-        document.getElementById(String(this.quiz_id_now)).click();
       });
     }, error => {
+      this.test.quizzes[this.quiz_id_now].checked = false;
       console.log(error)
     });
   }
@@ -145,7 +158,7 @@ export class PlayingPageComponent implements OnInit {
       title: 'Are you sure?',
       text:
           // this.examQuizzesDoneCheck.length + " / " + this.test.quizzes.length +
-          " done!",
+          "You won't be able to revert this!",
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',

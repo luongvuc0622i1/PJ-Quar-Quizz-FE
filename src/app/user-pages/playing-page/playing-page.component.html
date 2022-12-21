@@ -45,7 +45,7 @@
             </div>
             <div class="col-md-8" style="height: 550px">
                 <form id="regForm" *ngFor="let quiz of test.quizzes; index as i">
-                    <div class="modal-dialog widget-wrap tab" style="width: 780px; left: -29px">
+                    <div class="modal-dialog widget-wrap tab" style="width: 780px; left: -29px" (click)="getQuizId(i)">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h3><span class="label label-warning" id="qid">{{i+1}}</span> {{quiz.name}}</h3>
@@ -64,6 +64,14 @@
             </div>
             <div class="col-md-2" style="height: 550px">
                 <mat-icon id="nextBtn" (click)="nextPrev(1)" style="left: -5px">arrow_forward_ios_rounded</mat-icon>
+            </div>
+        </div>
+        <div class="row" style="position: center">
+            <div class="col-lg-1" *ngFor="let quiz of test.quizzes; index as idx">
+                <h3>
+                    <span *ngIf="quiz.checked == true" class="label label-primary" id="qid1">{{idx+1}}</span>
+                    <span *ngIf="quiz.checked == false" class="label label-warning" id="qid2">{{idx+1}}</span>
+                </h3>
             </div>
         </div>
     </div>
