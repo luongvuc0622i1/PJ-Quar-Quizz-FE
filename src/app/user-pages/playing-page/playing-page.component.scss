@@ -8,20 +8,47 @@
   background: linear-gradient(325deg, #6f00fc 0%, #fc7900 50%, #fcc700 100%);
 }
 
-button {
-  position: relative;
-  top: 0px;
-  left: 400px;
-  background: #282A3A;
-  color: #FFF;
-  border-radius: 5px;
-  padding: 10px 80px;
-  border: 0;
+/* button submit */
+.button-27 {
+  appearance: none;
+  background-color: #000000;
+  border: 2px solid #1A1A1A;
+  border-radius: 15px;
+  box-sizing: border-box;
+  color: #FFFFFF;
   cursor: pointer;
+  display: inline-block;
+  font-family: Roobert, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-size: 18px;
+  font-weight: 600;
+  line-height: normal;
+  margin: 0;
+  min-height: 60px;
+  min-width: 0;
+  outline: none;
+  padding: 11px 12px;
+  text-align: center;
+  text-decoration: none;
+  transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  width: 100%;
+  will-change: transform;
 }
 
-button:hover {
-  background-color: black;
+.button-27:disabled {
+  pointer-events: none;
+}
+
+.button-27:hover {
+  box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+  transform: translateY(-2px);
+}
+
+.button-27:active {
+  box-shadow: none;
+  transform: translateY(0);
 }
 
 .container {
@@ -38,7 +65,6 @@ button {
   padding: 10px 20px;
   border: 0;
   cursor: pointer;
-
 }
 
 .disabled {
@@ -58,7 +84,7 @@ button {
 .win {
   border-radius: 5px;
   box-shadow: 0 25px 50px rgb(33 33 33 / 25%);
-  background: linear-gradient(135deg,  #6f00fc 0%,#fc7900 50%,#fcc700 100%);
+  background: linear-gradient(135deg, #6f00fc 0%, #fc7900 50%, #fcc700 100%);
   transition: transform .6s cubic-bezier(0.4, 0.0, 0.2, 1);
   backface-visibility: hidden;
 }
@@ -73,10 +99,11 @@ button {
 .highlight {
   color: #6f00fc;
 }
+
 .start_btn,
 .info_box,
 .quiz_box,
-.result_box{
+.result_box {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -84,19 +111,22 @@ button {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
   0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
+
 .info_box.activeInfo,
 .quiz_box.activeQuiz,
-.result_box.activeResult{
+.result_box.activeResult {
   opacity: 1;
   z-index: 5;
   pointer-events: auto;
   transform: translate(-50%, -50%) scale(1);
 }
+
 .widget-wrap {
   width: 600px;
   padding: 30px;
   border-radius: 20px;
-  background: rgba(255, 255, 255, 0.4);}
+  background: rgba(255, 255, 255, 0.4);
+}
 
 #qid, #qid1, #qid2 {
   padding: 10px 15px;
@@ -104,10 +134,12 @@ button {
   -webkit-border-radius: 50px;
   border-radius: 20px;
 }
-input.largerCheck{
+
+input.largerCheck {
   width: 22px;
   height: 22px;
 }
+
 label.btn {
   padding: 18px 20px;
   white-space: normal;
@@ -118,6 +150,7 @@ label.btn {
   -moz-transition-duration: .3s;
   -o-transition-duration: .3s
 }
+
 label.option {
   padding: 18px 20px;
   color: white;
@@ -131,7 +164,7 @@ label.option {
 }
 
 label.btn:hover {
-  text-shadow: 0 3px 2px rgba(0,0,0,0.4);
+  text-shadow: 0 3px 2px rgba(0, 0, 0, 0.4);
   -webkit-transform: scale(1.1);
   -moz-transform: scale(1.1);
   -o-transform: scale(1.1)
@@ -144,6 +177,7 @@ label.option:hover {
   -moz-transform: scale(1.1);
   -o-transform: scale(1.1)
 }
+
 label.btn-block {
   text-align: left;
   position: relative
@@ -155,7 +189,7 @@ label.btn-label {
   top: 0;
   display: inline-block;
   padding: 0 10px;
-  background: rgba(0,0,0,.15);
+  background: rgba(0, 0, 0, .15);
   height: 100%
 }
 
@@ -170,6 +204,7 @@ label.btn-label {
   -ms-animation-iteration-count: 1;
   -ms-transform-origin: 50% 50%
 }
+
 .element-animation2 {
   animation: animationFrames ease 1s;
   animation-iteration-count: 1;
@@ -181,6 +216,7 @@ label.btn-label {
   -ms-animation-iteration-count: 1;
   -ms-transform-origin: 50% 50%
 }
+
 .element-animation3 {
   animation: animationFrames ease 1.2s;
   animation-iteration-count: 1;
@@ -192,6 +228,7 @@ label.btn-label {
   -ms-animation-iteration-count: 1;
   -ms-transform-origin: 50% 50%
 }
+
 .element-animation4 {
   animation: animationFrames ease 1.4s;
   animation-iteration-count: 1;
@@ -203,64 +240,65 @@ label.btn-label {
   -ms-animation-iteration-count: 1;
   -ms-transform-origin: 50% 50%
 }
+
 @keyframes animationFrames {
   0% {
     opacity: 0;
-    transform: translate(-1500px,0px)
+    transform: translate(-1500px, 0px)
   }
 
   60% {
     opacity: 1;
-    transform: translate(30px,0px)
+    transform: translate(30px, 0px)
   }
 
   80% {
-    transform: translate(-10px,0px)
+    transform: translate(-10px, 0px)
   }
 
   100% {
     opacity: 1;
-    transform: translate(0px,0px)
+    transform: translate(0px, 0px)
   }
 }
 
 @-webkit-keyframes animationFrames {
   0% {
     opacity: 0;
-    -webkit-transform: translate(-1500px,0px)
+    -webkit-transform: translate(-1500px, 0px)
   }
   60% {
     opacity: 1;
-    -webkit-transform: translate(30px,0px)
+    -webkit-transform: translate(30px, 0px)
   }
 
   80% {
-    -webkit-transform: translate(-10px,0px)
+    -webkit-transform: translate(-10px, 0px)
   }
 
   100% {
     opacity: 1;
-    -webkit-transform: translate(0px,0px)
+    -webkit-transform: translate(0px, 0px)
   }
 }
 
 @-ms-keyframes animationFrames {
   0% {
     opacity: 0;
-    -ms-transform: translate(-1500px,0px)
+    -ms-transform: translate(-1500px, 0px)
   }
 
   60% {
     opacity: 1;
-    -ms-transform: translate(30px,0px)
+    -ms-transform: translate(30px, 0px)
   }
   80% {
-    -ms-transform: translate(-10px,0px)
+    -ms-transform: translate(-10px, 0px)
   }
 
   100% {
     opacity: 1;
-    -ms-transform: translate(0px,0px)
+    -ms-transform: translate(0px, 0px)
   }
 }
 
@@ -288,7 +326,7 @@ label.btn-label {
   height: 48px;
   width: 48px;
   display: none;
-  color: rgba(255,255,255,.4);
+  color: rgba(255, 255, 255, .4);
 }
 
 .mat-icon:hover {
@@ -300,4 +338,18 @@ label.btn-label {
   display: none;
   color: rgba(255, 255, 255, 0.7);
   transform: scale(1.3);
+}
+
+.paging-number {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+i {
+  font-size: 4em;
+}
+
+#demo {
+  font-size: 3em;
 }

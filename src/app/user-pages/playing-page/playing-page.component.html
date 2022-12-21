@@ -1,35 +1,21 @@
 <div class="bgr">
     <div class="container">
         <div class="row">
-            <!--            <div class="modal-dialog widget-wrap" style="width: 970px; height: 150px">-->
-            <div class="modal-content" style="width: 1100px; height: 150px; position: center; left: 30px">
-                <div class="modal-header" style="height: 60px">
-                    <h1>{{test.name}}</h1>
-                    <button (click)="submitTest()" style="left: 980px; top: -52px">Submit</button>
-                    <button (click)="submitDone()" id="submit" style="background: inherit"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="col-md-4">
-                        <div class="form-group" style="text-align: center">
-                            <label>Level</label>
-                            <p>{{test.level.name}}</p>
-                        </div>
+            <div class="col-lg-2"></div>
+            <div class="col-lg-8">
+                <div>
+                    <div style="float: right">
+                        <button class="button-27" role="button" (click)="submitTest()">Submit</button>
+                        <button (click)="submitDone()" id="submit" style="background: inherit"></button>
                     </div>
-                    <div class="col-md-4">
-                        <div class="form-group" style="text-align: center">
-                            <label>Number Of Quizzes</label>
-                            <p>{{test.quizzes.length}}</p>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group" style="text-align: center">
-                            <label>Time Out</label>
-                            <p id="demo">{{test.maxTime}}</p>
-                        </div>
+                    <div class="form-group" style="float: left">
+                        <label for="demo"> <i class="pe-7s-alarm"></i> </label>
+                        <label id="demo">
+                            {{test.maxTime}} </label>
                     </div>
                 </div>
             </div>
-            <!--            </div>-->
+            <div class="col-lg-2"></div>
         </div>
         <div class="row">
             <div class="col-md-2" style="height: 550px">
@@ -37,21 +23,66 @@
             </div>
             <div class="col-md-8" style="height: 550px">
                 <form id="regForm" *ngFor="let quiz of test.quizzes; index as i">
-                    <div class="modal-dialog widget-wrap tab" style="width: 780px; left: -29px" (click)="getQuizId(i)">
+                    <div class="modal-dialog widget-wrap tab" style="width: 780px; left: -29px"
+                         (click)="getQuizId(i)">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h3><span class="label label-warning" id="qid">{{i+1}}</span> {{quiz.name}}</h3>
+                                <h3><span class="label label-warning" id="qid">{{i + 1}}</span> {{quiz.name}}</h3>
                             </div>
                             <div class="modal-body">
                                 <div class="quiz" id="quiz">
-                                    <label class="element-animation1 btn-lg btn-warning btn-block option" *ngIf="quiz.correct_answer.length == 1"><input class="largerCheck" type="radio" name="answer_q" [checked]="quiz.answer[0].checked" (change)="quiz.answer[0].checked = !quiz.answer[0].checked">  {{quiz.answer[0].name}}</label>
-                                    <label class="element-animation1 btn-lg btn-warning btn-block option" *ngIf="quiz.correct_answer.length != 1"><input class="largerCheck" type="checkbox" [checked]="quiz.answer[0].checked" (change)="quiz.answer[0].checked = !quiz.answer[0].checked">  {{quiz.answer[0].name}}</label>
-                                    <label class="element-animation1 btn-lg btn-warning btn-block option" *ngIf="quiz.correct_answer.length == 1"><input class="largerCheck" type="radio" name="answer_q" [checked]="quiz.answer[1].checked" (change)="quiz.answer[1].checked = !quiz.answer[1].checked">  {{quiz.answer[1].name}}</label>
-                                    <label class="element-animation1 btn-lg btn-warning btn-block option" *ngIf="quiz.correct_answer.length != 1"><input class="largerCheck" type="checkbox" [checked]="quiz.answer[1].checked" (change)="quiz.answer[1].checked = !quiz.answer[1].checked">  {{quiz.answer[1].name}}</label>
-                                    <label class="element-animation1 btn-lg btn-warning btn-block option" *ngIf="quiz.correct_answer.length == 1"><input class="largerCheck" type="radio" name="answer_q" [checked]="quiz.answer[2].checked" (change)="quiz.answer[2].checked = !quiz.answer[2].checked">  {{quiz.answer[2].name}}</label>
-                                    <label class="element-animation1 btn-lg btn-warning btn-block option" *ngIf="quiz.correct_answer.length != 1"><input class="largerCheck" type="checkbox" [checked]="quiz.answer[2].checked" (change)="quiz.answer[2].checked = !quiz.answer[2].checked">  {{quiz.answer[2].name}}</label>
-                                    <label class="element-animation1 btn-lg btn-warning btn-block option" *ngIf="quiz.correct_answer.length == 1"><input class="largerCheck" type="radio" name="answer_q" [checked]="quiz.answer[3].checked" (change)="quiz.answer[3].checked = !quiz.answer[3].checked">  {{quiz.answer[3].name}}</label>
-                                    <label class="element-animation1 btn-lg btn-warning btn-block option" *ngIf="quiz.correct_answer.length != 1"><input class="largerCheck" type="checkbox" [checked]="quiz.answer[3].checked" (change)="quiz.answer[3].checked = !quiz.answer[3].checked">  {{quiz.answer[3].name}}</label>
+                                    <label class="element-animation1 btn-lg btn-warning btn-block option"
+                                           *ngIf="quiz.correct_answer.length == 1"><input class="largerCheck"
+                                                                                          type="radio"
+                                                                                          name="answer_q"
+                                                                                          [checked]="quiz.answer[0].checked"
+                                                                                          (change)="quiz.answer[0].checked = !quiz.answer[0].checked">  {{quiz.answer[0].name}}
+                                    </label>
+                                    <label class="element-animation1 btn-lg btn-warning btn-block option"
+                                           *ngIf="quiz.correct_answer.length != 1"><input class="largerCheck"
+                                                                                          type="checkbox"
+                                                                                          [checked]="quiz.answer[0].checked"
+                                                                                          (change)="quiz.answer[0].checked = !quiz.answer[0].checked">  {{quiz.answer[0].name}}
+                                    </label>
+                                    <label class="element-animation1 btn-lg btn-warning btn-block option"
+                                           *ngIf="quiz.correct_answer.length == 1"><input class="largerCheck"
+                                                                                          type="radio"
+                                                                                          name="answer_q"
+                                                                                          [checked]="quiz.answer[1].checked"
+                                                                                          (change)="quiz.answer[1].checked = !quiz.answer[1].checked">  {{quiz.answer[1].name}}
+                                    </label>
+                                    <label class="element-animation1 btn-lg btn-warning btn-block option"
+                                           *ngIf="quiz.correct_answer.length != 1"><input class="largerCheck"
+                                                                                          type="checkbox"
+                                                                                          [checked]="quiz.answer[1].checked"
+                                                                                          (change)="quiz.answer[1].checked = !quiz.answer[1].checked">  {{quiz.answer[1].name}}
+                                    </label>
+                                    <label class="element-animation1 btn-lg btn-warning btn-block option"
+                                           *ngIf="quiz.correct_answer.length == 1"><input class="largerCheck"
+                                                                                          type="radio"
+                                                                                          name="answer_q"
+                                                                                          [checked]="quiz.answer[2].checked"
+                                                                                          (change)="quiz.answer[2].checked = !quiz.answer[2].checked">  {{quiz.answer[2].name}}
+                                    </label>
+                                    <label class="element-animation1 btn-lg btn-warning btn-block option"
+                                           *ngIf="quiz.correct_answer.length != 1"><input class="largerCheck"
+                                                                                          type="checkbox"
+                                                                                          [checked]="quiz.answer[2].checked"
+                                                                                          (change)="quiz.answer[2].checked = !quiz.answer[2].checked">  {{quiz.answer[2].name}}
+                                    </label>
+                                    <label class="element-animation1 btn-lg btn-warning btn-block option"
+                                           *ngIf="quiz.correct_answer.length == 1"><input class="largerCheck"
+                                                                                          type="radio"
+                                                                                          name="answer_q"
+                                                                                          [checked]="quiz.answer[3].checked"
+                                                                                          (change)="quiz.answer[3].checked = !quiz.answer[3].checked">  {{quiz.answer[3].name}}
+                                    </label>
+                                    <label class="element-animation1 btn-lg btn-warning btn-block option"
+                                           *ngIf="quiz.correct_answer.length != 1"><input class="largerCheck"
+                                                                                          type="checkbox"
+                                                                                          [checked]="quiz.answer[3].checked"
+                                                                                          (change)="quiz.answer[3].checked = !quiz.answer[3].checked">  {{quiz.answer[3].name}}
+                                    </label>
                                 </div>
                             </div>
                         </div>
@@ -62,11 +93,11 @@
                 <mat-icon id="nextBtn" (click)="nextPrev(1)" style="left: -5px">arrow_forward_ios_rounded</mat-icon>
             </div>
         </div>
-        <div class="row" style="position: center">
+        <div class="row paging-number" style="position: center">
             <div class="col-lg-1" *ngFor="let quiz of test.quizzes; index as idx">
                 <h3>
-                    <span *ngIf="quiz.checked == true" class="label label-primary" id="qid1">{{idx+1}}</span>
-                    <span *ngIf="quiz.checked == false" class="label label-warning" id="qid2">{{idx+1}}</span>
+                    <span *ngIf="quiz.checked == true" class="label label-warning" id="qid1">{{idx + 1}}</span>
+                    <span *ngIf="quiz.checked == false" class="label label-default" id="qid2">{{idx + 1}}</span>
                 </h3>
             </div>
         </div>
