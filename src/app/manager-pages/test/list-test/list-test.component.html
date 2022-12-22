@@ -32,7 +32,7 @@
                             </tr>
                             </thead>
                             <tbody id="myTable">
-                            <tr *ngFor="let test of tests; index as i">
+                            <tr *ngFor="let test of tests.slice().reverse(); index as i">
                                 <td>{{i + 1}}</td>
                                 <td><a [routerLink]="['/manager/tests',test.id]">{{test.name}}</a></td>
                                 <td>{{test.level.name}}</td>

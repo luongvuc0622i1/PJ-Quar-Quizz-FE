@@ -1,7 +1,6 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {TestService} from "../../../service/test/test.service";
 import {Test} from "../../../model/test";
-import {MatPaginator} from "@angular/material/paginator";
 
 @Component({
   selector: 'app-list-test',
@@ -10,7 +9,6 @@ import {MatPaginator} from "@angular/material/paginator";
 })
 export class ListTestComponent implements OnInit {
   tests: Test[] = [];
-  @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor(private testService: TestService) { }
 
@@ -29,8 +27,6 @@ export class ListTestComponent implements OnInit {
         });
       });
     });
-    // @ts-ignore
-    $("#myTable tr").paginator = this.paginator;
   };
 
   getAll() {
