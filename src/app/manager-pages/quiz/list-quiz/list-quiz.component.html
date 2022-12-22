@@ -29,7 +29,7 @@
                                 <th class="col-md-2" style="text-align: center">Actions</th>
                             </tr>
                             </thead>
-                            <tbody *ngFor="let quiz of quizzes; index as i" id="myTable">
+                            <tbody *ngFor="let quiz of quizzes.slice().reverse(); index as i" id="myTable">
                             <tr>
                                 <td>{{i + 1}}</td>
                                 <td>{{quiz.name}}</td>
