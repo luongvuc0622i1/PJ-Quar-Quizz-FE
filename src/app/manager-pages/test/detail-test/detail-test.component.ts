@@ -24,4 +24,23 @@ export class DetailTestComponent implements OnInit {
       this.test = test;
     });
   }
+
+  ngAfterViewInit() {
+    let c = [];
+    for (let i = 0; i < this.test.quizzes.length; i++) {
+      let a = this.test.quizzes[i].answer.split(';');
+      let b = this.test.quizzes[i].correct_answer.split(';');
+      for (let i = 0; i < a.length; i++) {
+        // @ts-ignore
+        c.push({name: a[i], checked: false})
+      }
+      for (let i = 0; i < b.length; i++) {
+        // @ts-ignore
+        c[(b[i] - 1)].checked = true;
+      }
+      // @ts-ignore
+      this.test.quizzes[i].answer = c;
+      c = [];
+    }
+  }
 }

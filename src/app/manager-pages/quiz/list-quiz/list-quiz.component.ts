@@ -38,7 +38,6 @@ export class ListQuizComponent implements OnInit {
     };
 
     getValue(quiz: Quiz) {
-        console.log(quiz)
         this.answers = [];
         let a = quiz.answer.split(';');
         let b = quiz.correct_answer.split(';');
@@ -50,7 +49,6 @@ export class ListQuizComponent implements OnInit {
             // @ts-ignore
             this.answers[b[i]-1].checked = true;
         }
-        console.log(this.answers);
     }
 
     deleteQuiz(id) {

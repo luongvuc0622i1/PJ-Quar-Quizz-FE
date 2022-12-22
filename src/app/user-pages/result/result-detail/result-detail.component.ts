@@ -64,7 +64,6 @@ export class ResultDetailComponent implements OnInit {
             // @ts-ignore
             this.examTest.examQuizzes[i].quiz.answer = c;
             c = [];
-            console.log(this.examTest.examQuizzes);
         }
     };
 
