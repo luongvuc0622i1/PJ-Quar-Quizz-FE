@@ -26,8 +26,9 @@
                                 <th>Name</th>
                                 <th>Max Time</th>
                                 <th>Level</th>
-                                <th>Pass Score</th>
-                                <th>User Score</th>
+                                <th style="text-align: right">Pass Score</th>
+                                <th style="text-align: right">User Score</th>
+                                <td style="width: 100px"></td>
                                 <th>ACTION</th>
                             </tr>
                             </thead>
@@ -37,8 +38,9 @@
                                 <td>{{exam.examQuizzes[0].test.name}}</td>
                                 <td>{{exam.examQuizzes[0].test.maxTime}}</td>
                                 <td>{{exam.examQuizzes[0].test.level.name}}</td>
-                                <td>{{exam.examQuizzes[0].test.passScore}}</td>
-                                <td>{{(exam.numOfTA / exam.examQuizzes[0].test.quizzes.length * 100).toFixed()}}</td>
+                                <td style="text-align: right">{{exam.examQuizzes[0].test.passScore}}</td>
+                                <td style="text-align: right">{{(exam.numOfTA / exam.examQuizzes[0].test.quizzes.length * 100).toFixed()}}</td>
+                                <td></td>
                                 <td *ngIf="roles[7] == 3">
                                     <a [routerLink]="['/user/results/',exam.id]" class="view" title="View"
                                        data-toggle="tooltip">

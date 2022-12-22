@@ -21,7 +21,7 @@ export class ListQuizComponent implements OnInit {
         this.quizService.getAll().subscribe(quizList => {
             this.quizzes = quizList;
         });
-        setTimeout(() => document.getElementById("clickk").click(), 500);
+        setTimeout(() => document.getElementById("clickk").click(), 100);
     }
 
     ngAfterViewInit() {
