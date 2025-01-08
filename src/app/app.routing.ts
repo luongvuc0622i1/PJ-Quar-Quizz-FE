@@ -4,15 +4,15 @@ import {BrowserModule} from '@angular/platform-browser';
 import {Routes, RouterModule} from '@angular/router';
 import {ManagerLayoutComponent} from "./layouts/manager-layout/manager-layout.component";
 import {UserLayoutComponent} from "./layouts/user-layout/user-layout.component";
-import {AuthGuard} from "./service/security/auth.guard";
 import {LandingPageComponent} from "./landing-page/landing-page.component";
 import {AccountPageComponent} from "./account-page/account-page.component";
 import {AdminLayoutComponent} from "./layouts/admin-layout/admin-layout.component";
 import {PlayingPageComponent} from "./user-pages/playing-page/playing-page.component";
-import {ForgetPasswordComponent} from "./forget-password/forget-password.component";
 import {AdminGuard} from "./service/security/admin.guard";
 import {ManagerGuard} from "./service/security/manager.guard";
 import {UserGuard} from "./service/security/user.guard";
+import {ForgotPasswordComponent} from "./forgot-password/forgot-password.component";
+import {AuthGuard} from "./service/security/auth.guard";
 
 const routes: Routes = [
     {
@@ -24,11 +24,11 @@ const routes: Routes = [
         component: AccountPageComponent
     },
     {
-        path: 'forget-password',
-        component: ForgetPasswordComponent
+        path: 'forgot-password',
+        component: ForgotPasswordComponent
     },
     {
-        path: 'user', canActivate: [UserGuard],
+        path: 'user', canActivate: [UserGuard, AuthGuard],
         component: UserLayoutComponent,
         children: [
             {
@@ -40,7 +40,7 @@ const routes: Routes = [
         component: PlayingPageComponent
     },
     {
-        path: 'manager', canActivate: [ManagerGuard],
+        path: 'manager', canActivate: [ManagerGuard, AuthGuard],
         component: ManagerLayoutComponent,
         children: [
             {
@@ -49,7 +49,7 @@ const routes: Routes = [
             }]
     },
     {
-        path: 'admin', canActivate: [AdminGuard],
+        path: 'admin', canActivate: [AdminGuard, AuthGuard],
         component: AdminLayoutComponent,
         children: [
             {

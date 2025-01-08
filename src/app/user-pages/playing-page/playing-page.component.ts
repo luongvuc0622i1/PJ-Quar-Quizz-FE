@@ -14,17 +14,15 @@ import Swal from "sweetalert2";
 })
 export class PlayingPageComponent implements OnInit {
   test: Test;
-  answerUserAr: number[] = [];
-  answerUser: String = '';
   id: number; //id_test
   id_user: number;
-  id_quiz: number;
-  examQuiz: ExamQuiz;
+  id_quiz: number = 0;
   examQuizAr: ExamQuiz[] = [];
   examTest: ExamTest;
   examQuizzesDoneCheck: [];
   numOfTA: number;
   arrCheck: ExamQuiz[] = [];
+  quiz_id_now: number = 0;
 
   //step
   currentTab = 0; // Current tab is set to be the first tab (0)
@@ -46,7 +44,29 @@ export class PlayingPageComponent implements OnInit {
   ngAfterViewInit() {
     this.showTab(0);
     this.setTimeOut();
+
+    for (let i = 0; i < this.test.quizzes.length; i++) {
+      Object.assign(this.test.quizzes[i], {checked: false});
+      let a = this.test.quizzes[i].answer.split(';');
+      let b = [];
+      for (let j = 0; j < a.length; j++) {
+        b.push({"name": a[j], "checked": false, "id": j});
+      }
+      this.test.quizzes[i].answer = b;
+    }
   }
+
+  getQuizId(id: number) {
+    this.quiz_id_now = id;
+  }
+
+  // ngAfterViewChecked() {
+  //     if (this.test.quizzes[this.quiz_id_now].answer.checked) {
+  //       this.test.quizzes[this.quiz_id_now].checked = true;
+  //     } else {
+  //       this.test.quizzes[this.quiz_id_now].checked = false;
+  //     }
+  // }
 
   //step
   showTab(n) {
@@ -82,49 +102,63 @@ export class PlayingPageComponent implements OnInit {
     this.currentTab = this.currentTab + n;
     // Otherwise, display the correct tab:
     this.showTab(this.currentTab);
-  }
 
-  getQuizId(id: number) {
-    this.id_quiz = id;
-  }
 
-  click(value: number) {
-    this.answerUserAr.push(value);
-    this.answerUser = this.answerUserAr.join(';');
-    this.id_user = Number(localStorage.getItem('ID_KEY'));
-    this.examQuiz = {
-      "quiz":
-          {
-            "id":this.id_quiz
-          },
-      "test":
-          {
-            "id":this.id
-          },
-      "answerUser":this.answerUser,
-      // @ts-ignore
-      appUser: {"id":this.id_user}
-    }
+    this.send();
+    // this.quiz_id_now += n;
   }
 
   send() {
-    this.examService.saveQuiz(this.examQuiz).subscribe(examQuizDB => {
+    let selected;
+    let answerUserAr = [];
+    let answerUser;
+    let examQuiz;
+    let t = this.test.quizzes[this.quiz_id_now].answer
+        .filter(opt => opt.checked)
+        .map(opt => opt);
+    selected = t;
+
+    for (let i=0; i < selected.length; i++) {
+      answerUserAr.push(selected[i].id + 1);
+    }
+
+    answerUser = answerUserAr.join(';');
+    this.id_user = Number(localStorage.getItem('ID_KEY'));
+    if (answerUser) {
+      examQuiz = {
+        "quiz":
+            {
+              "id":(this.test.quizzes[this.quiz_id_now].id)
+            },
+        "test":
+            {
+              "id":this.id
+            },
+        "answerUser":answerUser,
+        // @ts-ignore
+        appUser: {"id":this.id_user}
+      }
+    }
+    console.log(this.quiz_id_now)
+    console.log(examQuiz)
+    this.examService.saveQuiz(examQuiz).subscribe(examQuizDB => {
+      this.test.quizzes[this.quiz_id_now].checked = true;
       this.examService.findEQById(examQuizDB.id).subscribe(examQuiz => {
         this.examQuizAr.push(examQuiz);
       });
     }, error => {
+      this.test.quizzes[this.quiz_id_now].checked = false;
       console.log(error)
     });
-    this.answerUserAr = [];
-    this.answerUser = '';
-    this.examQuiz = null;
   }
 
   submitTest() {
-    this.checkAr(this.examQuizAr);
+    // this.checkAr(this.examQuizAr);
     Swal.fire({
       title: 'Are you sure?',
-      text: this.examQuizzesDoneCheck.length + " / " + this.test.quizzes.length + " done!",
+      text:
+          // this.examQuizzesDoneCheck.length + " / " + this.test.quizzes.length +
+          "You won't be able to revert this!",
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
@@ -176,22 +210,28 @@ export class PlayingPageComponent implements OnInit {
       appUser: {"id":this.id_user},
       "numOfTA": this.numOfTA
     }
+    console.log("end")
+    console.log(this.examTest)
     this.examService.saveTest(this.examTest).subscribe(() =>{
-      Swal.fire(
-          'Done!',
-          ' ',
-          'success'
-      )
-      this.router.navigate(['/user/home']);
+      Swal.fire({
+        icon: 'success',
+        title: 'Done!',
+        showConfirmButton: false,
+        timer: 1500
+          }
+      ).then(()=>
+      this.router.navigate(['/user/home']));
     }, error => {
       console.log('chua nop dc bai!');
     });
   }
 
   checkAr(examQuizzes: ExamQuiz[]) {
+    console.log(examQuizzes);
     this.examQuizzesDoneCheck = [];
     this.arrCheck = [];
-    let examQuizzesRV = examQuizzes.reverse();
+    let examQuizzesRV = examQuizzes.sort().reverse();
+    console.log(examQuizzesRV)
     let arrC = [];
     let arrCid = [];
     let arrD = [];

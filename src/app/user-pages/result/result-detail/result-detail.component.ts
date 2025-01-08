@@ -1,9 +1,9 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ExamService} from "../../../service/exam/exam.service";
 import {ActivatedRoute, ParamMap} from "@angular/router";
 import {ExamTest} from "../../../model/exam-test";
-import {MatPaginator} from "@angular/material/paginator";
 import {ExamQuiz} from "../../../model/exam-quiz";
+import {Quiz} from "../../../model/quiz";
 
 @Component({
   selector: 'app-result-detail',
@@ -14,7 +14,9 @@ export class ResultDetailComponent implements OnInit {
     examTest: ExamTest;
     id: number;
     boolean: boolean;
-    @ViewChild(MatPaginator) paginator: MatPaginator;
+    answerUser: string[] = [];
+    correct_answer: string[] = [];
+    answers: any = [];
 
     constructor(private examTestService : ExamService,
                 private activatedRoute: ActivatedRoute) {
@@ -40,9 +42,29 @@ export class ResultDetailComponent implements OnInit {
                 });
             });
         });
-        // @ts-ignore
-        $("#myTable tr").paginator = this.paginator;
         this.checkStatus(this.examTest.examQuizzes);
+
+        let c = [];
+        for (let i = 0; i < this.examTest.examQuizzes.length; i++) {
+            let a = this.examTest.examQuizzes[i].quiz.answer.split(';');
+            let b = this.examTest.examQuizzes[i].quiz.correct_answer.split(';');
+            let d = this.examTest.examQuizzes[i].answerUser.split(';');
+            for (let i = 0; i < a.length; i++) {
+                // @ts-ignore
+                c.push({name: a[i], checked: false, userAnswer: false})
+            }
+            for (let i = 0; i < b.length; i++) {
+                // @ts-ignore
+                c[(b[i]-1)].checked = true;
+            }
+            for (let i = 0; i < d.length; i++) {
+                // @ts-ignore
+                c[(d[i]-1)].userAnswer = true;
+            }
+            // @ts-ignore
+            this.examTest.examQuizzes[i].quiz.answer = c;
+            c = [];
+        }
     };
 
     checkStatus(examQuizzes: ExamQuiz[]) {

@@ -25,7 +25,7 @@ export class LogoutService {
           icon: 'success',
           title: 'Logout Success!',
           showConfirmButton: false,
-          timer: 2000
+          timer: 1500
         })
         localStorage.clear();
         // this.router.navigate(['account']).then(()=>{

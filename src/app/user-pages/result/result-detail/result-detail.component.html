@@ -20,23 +20,49 @@
                         <table class="table table-hover table-striped">
                             <thead>
                             <tr>
-                                <th>ID <i class="fa fa-sort"></i></th>
-                                <th>Level <i class="fa fa-sort"></i></th>
-                                <th>Quiz <i class="fa fa-sort"></i></th>
-                                <th>User answer <i class="fa fa-sort"></i></th>
-                                <th>Correct answer <i class="fa fa-sort"></i></th>
-                                <th>Status <i class="fa fa-sort"></i></th>
+                                <th>ID</th>
+                                <th>Level</th>
+                                <th>Quiz</th>
+                                <th>Result</th>
                             </tr>
                             </thead>
-                            <tbody id="myTable">
-                            <tr *ngFor="let examQuiz of examTest.examQuizzes; index as i">
+                            <tbody *ngFor="let examQuiz of examTest.examQuizzes; index as i" id="myTable">
+                            <tr>
                                 <td>{{i + 1}}</td>
                                 <td>{{examQuiz.quiz.level.name}}</td>
                                 <td>{{examQuiz.quiz.name}}</td>
-                                <td>{{examQuiz.answerUser}}</td>
-                                <td>{{examQuiz.quiz.correct_answer}}</td>
-                                <td *ngIf="examQuiz.status==1">True</td>
-                                <td *ngIf="examQuiz.status==0">False</td>
+                                <td *ngIf="examQuiz.status==1">
+                                    <a class="view" title="See detail" data-toggle="collapse" data-parent="#accordion" href="#{{i}}">
+                                        <mat-icon style="color: green">check_circle_outline</mat-icon>
+                                    </a>
+                                </td>
+                                <td *ngIf="examQuiz.status==0">
+                                    <a class="view" title="See detail" data-toggle="collapse" data-parent="#accordion" href="#{{i}}">
+                                        <mat-icon color="warn">highlight_off</mat-icon>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr id="{{i}}" class="panel-collapse collapse">
+                                <td colspan="2" class="panel-body text-muted">
+                                    <p *ngIf="examQuiz.quiz.answer[0].checked == false">A. {{examQuiz.quiz.answer[0].name}}</p>
+                                    <p *ngIf="examQuiz.quiz.answer[0].checked == true" style="color: green">A. {{examQuiz.quiz.answer[0].name}}</p>
+                                    <p *ngIf="examQuiz.quiz.answer[1].checked == false">B. {{examQuiz.quiz.answer[1].name}}</p>
+                                    <p *ngIf="examQuiz.quiz.answer[1].checked == true" style="color: green">B. {{examQuiz.quiz.answer[1].name}}</p>
+                                    <p *ngIf="examQuiz.quiz.answer[2].checked == false">C. {{examQuiz.quiz.answer[2].name}}</p>
+                                    <p *ngIf="examQuiz.quiz.answer[2].checked == true" style="color: green">C. {{examQuiz.quiz.answer[2].name}}</p>
+                                    <p *ngIf="examQuiz.quiz.answer[3].checked == false">D. {{examQuiz.quiz.answer[3].name}}</p>
+                                    <p *ngIf="examQuiz.quiz.answer[3].checked == true" style="color: green">D. {{examQuiz.quiz.answer[3].name}}</p>
+                                </td>
+                                <td colspan="2" class="panel-body text-muted">
+                                    <p *ngIf="examQuiz.quiz.answer[0].userAnswer == false">A. {{examQuiz.quiz.answer[0].name}}</p>
+                                    <p *ngIf="examQuiz.quiz.answer[0].userAnswer == true" style="color: blue">A. {{examQuiz.quiz.answer[0].name}}</p>
+                                    <p *ngIf="examQuiz.quiz.answer[1].userAnswer == false">B. {{examQuiz.quiz.answer[1].name}}</p>
+                                    <p *ngIf="examQuiz.quiz.answer[1].userAnswer == true" style="color: blue">B. {{examQuiz.quiz.answer[1].name}}</p>
+                                    <p *ngIf="examQuiz.quiz.answer[2].userAnswer == false">C. {{examQuiz.quiz.answer[2].name}}</p>
+                                    <p *ngIf="examQuiz.quiz.answer[2].userAnswer == true" style="color: blue">C. {{examQuiz.quiz.answer[2].name}}</p>
+                                    <p *ngIf="examQuiz.quiz.answer[3].userAnswer == false">D. {{examQuiz.quiz.answer[3].name}}</p>
+                                    <p *ngIf="examQuiz.quiz.answer[3].userAnswer == true" style="color: blue">D. {{examQuiz.quiz.answer[3].name}}</p>
+                                </td>
                             </tr>
                             </tbody>
                         </table>
@@ -46,3 +72,4 @@
         </div>
     </div>
 </div>
+

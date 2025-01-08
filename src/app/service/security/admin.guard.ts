@@ -29,7 +29,7 @@ export class AdminGuard implements CanActivate {
             text: 'Can not Access!',
             footer: '<a href="">Why do I have this issue?</a>'
           })
-          this.router.navigate(['manager']);
+          this.router.navigate(['manager/profile']);
         }
       }
       if (this.tokenService.getToken()) {
@@ -40,7 +40,7 @@ export class AdminGuard implements CanActivate {
             text: 'Can not Access!',
             footer: '<a href="">Why do I have this issue?</a>'
           })
-          this.router.navigate(['user']);
+          this.router.navigate(['user/home']);
         }
       }
       else {

@@ -14,18 +14,23 @@
                         </div>
                     </div>
                     <div class="header col-lg-2" style="float: right; height: 55px">
-                        <button *ngIf="roles[7] == 2" [routerLink]="['/manager/users']" class="btn btn-primary btn-fill pull-right">Back to list</button>
+                        <button *ngIf="roles[7] == 2" [routerLink]="['/manager/users']"
+                                class="btn btn-primary btn-fill pull-right">Back to list
+                        </button>
                     </div>
                     <div class="content table-responsive table-full-width">
                         <table class="table table-hover table-striped">
                             <thead>
                             <tr>
-                                <th>ID <i class="fa fa-sort"></i></th>
-                                <th>Name <i class="fa fa-sort"></i></th>
-                                <th>Max Time <i class="fa fa-sort"></i></th>
-                                <th>Level <i class="fa fa-sort"></i></th>
-                                <th>Pass Score <i class="fa fa-sort"></i></th>
-                                <th>User Score <i class="fa fa-sort"></i></th>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Max Time</th>
+                                <th>Level</th>
+                                <th style="text-align: right">Pass Score</th>
+                                <th style="text-align: right">User Score</th>
+                                <td style="width: 50px"></td>
+                                <th style="text-align: center">Pass Test</th>
+                                <td style="width: 50px"></td>
                                 <th>ACTION</th>
                             </tr>
                             </thead>
@@ -35,16 +40,26 @@
                                 <td>{{exam.examQuizzes[0].test.name}}</td>
                                 <td>{{exam.examQuizzes[0].test.maxTime}}</td>
                                 <td>{{exam.examQuizzes[0].test.level.name}}</td>
-                                <td>{{exam.examQuizzes[0].test.passScore}}</td>
-                                <td>{{(exam.numOfTA/exam.examQuizzes[0].test.quizzes.length*100).toFixed()}}</td>
+                                <td style="text-align: right">{{exam.examQuizzes[0].test.passScore}}</td>
+                                <td style="text-align: right">{{(exam.numOfTA / exam.examQuizzes[0].test.quizzes.length * 100).toFixed()}}</td>
+                                <td></td>
+                                <td style="text-align: center" *ngIf="exam.examQuizzes[0].test.passScore < exam.numOfTA / exam.examQuizzes[0].test.quizzes.length * 100">
+                                    <mat-icon style="color: green">check_circle_outline</mat-icon>
+                                </td>
+                                <td style="text-align: center" *ngIf="exam.examQuizzes[0].test.passScore >= exam.numOfTA / exam.examQuizzes[0].test.quizzes.length * 100">
+                                    <mat-icon color="warn">highlight_off</mat-icon>
+                                </td>
+                                <td></td>
                                 <td *ngIf="roles[7] == 3">
-                                    <a [routerLink]="['/user/results/',exam.id]" class="view" title="View" data-toggle="tooltip">
+                                    <a [routerLink]="['/user/results/',exam.id]" class="view" title="View"
+                                       data-toggle="tooltip">
                                         <i class="material-icons">&#xE417;</i>
                                         <p class="hidden-lg hidden-md">View</p>
                                     </a>
                                 </td>
                                 <td *ngIf="roles[7] == 2">
-                                    <a [routerLink]="['/manager/results/',exam.id]" class="view" title="View" data-toggle="tooltip">
+                                    <a [routerLink]="['/manager/results/',exam.id]" class="view" title="View"
+                                       data-toggle="tooltip">
                                         <i class="material-icons">&#xE417;</i>
                                         <p class="hidden-lg hidden-md">View</p>
                                     </a>
@@ -58,3 +73,4 @@
         </div>
     </div>
 </div>
+
